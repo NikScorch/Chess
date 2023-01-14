@@ -125,19 +125,13 @@ class ChessPiece(pygame.sprite.Sprite):
         elif self.attached == False:
             self.rect.x = (self.rect.x+50)//100*100
             self.rect.y = (self.rect.y+50)//100*100
-        
-    def pickUp(self):
-        self.attached == True
 
-    def putDown(self):
-        self.attached == False
-
-    def remove(self):
-        self.status == False
-    
     def promote(self):
-        self.piece == "q"
+        self.piece = "q"
         self.image = pygame.image.load("src/pieces/{}/{}{}.png".format(self.piece_set, self.colour, self.piece))
+        self.image = pygame.transform.scale(self.image, (screen.get_width()/8, screen.get_width()/8)).convert_alpha()
+    def remove(self):
+        self.status = False
     
 
 
@@ -216,6 +210,12 @@ def __main__():
                 found_piece = find_closest(white + black, mouse_pos)
                 if not found_piece == None:
                     found_piece.attached = not found_piece.attached 
+            
+            if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP:
+                if event.key == pygame.K_SPACE:
+                    for piece in white + black:
+                        if piece.piece == "p":
+                            piece.promote()
 
 
 
