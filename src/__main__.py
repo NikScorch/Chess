@@ -205,7 +205,7 @@ def __main__():
                 pygame.quit()
                 raise SystemExit
 
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.MOUSEBUTTONUP:
                 mouse_pos = pygame.mouse.get_pos()
                 found_piece = find_closest(white + black, mouse_pos)
                 if not found_piece == None:
