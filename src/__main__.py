@@ -104,28 +104,47 @@ class ChessPiece(pygame.sprite.Sprite):
         self.piece = piece[1]
         self.attached = False                   # Picked up with mouse
         self.status = True                      # Alive or Dead/True or False
+        self.aggression = False
 
         self.image = pygame.image.load("src/pieces/{}/{}{}.png".format(self.piece_set, self.colour, self.piece))
         self.image = pygame.transform.scale(self.image, (screen.get_width()/8, screen.get_width()/8)).convert_alpha()
         self.rect = self.image.get_rect()
 
         if start_pos == None:
+            # Random start position
             self.rect.x = randint(0, 7)*100
             self.rect.y = randint(0, 7)*100
+            self.xy = (self.rect.x//100, self.rect.y//100)
         else:
+            # Set start position
             self.xy = board_to_coord(start_pos)
             self.rect.x = self.xy[0]*100
             self.rect.y = self.xy[1]*100
 
     def update(self):
-        pos = pygame.mouse.get_pos()
         if self.attached == True:
+            self.aggression = True
+            pos = pygame.mouse.get_pos()
             self.rect.x, self.rect.y = (pos[0] - self.rect.width/2, pos[1] - self.rect.width/2)
-            #self.rect.x, self.rect.y = pygame.mouse.get_pos()
+            self.xy = (self.rect.x//100, self.rect.y//100)
         elif self.attached == False:
             self.rect.x = (self.rect.x+50)//100*100
             self.rect.y = (self.rect.y+50)//100*100
+            self.xy = (self.rect.x//100, self.rect.y//100)
+
             self.promote()  # Check for need to promote
+            # Remove enemy piece if aggressive
+            if self.aggression:
+                # determine enemy
+                if self.colour == "w":
+                    enemy = black
+                elif self.colour == "b":
+                    enemy = white
+                # Remove piece
+                for piece in enemy:
+                    if piece.xy == self.xy:
+                        piece.remove()
+                self.aggression = False
 
     def promote(self):
         if self.piece == "p":
@@ -134,7 +153,8 @@ class ChessPiece(pygame.sprite.Sprite):
                 self.image = pygame.image.load("src/pieces/{}/{}{}.png".format(self.piece_set, self.colour, self.piece))
                 self.image = pygame.transform.scale(self.image, (screen.get_width()/8, screen.get_width()/8)).convert_alpha()
     def remove(self):
-        self.status = False
+        self.xy = (-100, -100)
+        self.rect.x, self.rect.y = self.xy
     
 
 
@@ -218,7 +238,7 @@ def __main__():
                 if event.key == pygame.K_SPACE:
                     for piece in white + black:
                         if piece.piece == "p":
-                            piece.promote()
+                            piece.remove()
 
 
 
