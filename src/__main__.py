@@ -30,6 +30,7 @@
 import pygame
 from random import randint
 from math import dist
+from time import sleep
 
 # These functions convert array coords into Square Names
 # e.g. (0,0) --> "a8"
@@ -153,6 +154,15 @@ class ChessPiece(pygame.sprite.Sprite):
                 self.image = pygame.image.load("src/pieces/{}/{}{}.png".format(self.piece_set, self.colour, self.piece))
                 self.image = pygame.transform.scale(self.image, (screen.get_width()/8, screen.get_width()/8)).convert_alpha()
     def remove(self):
+        if self.piece == "k":
+            if self.colour == "w":
+                print("White has been CheckMated!\nBlack Wins!")
+            elif self.colour == "b":
+                print("Black has been CheckMated!\nWhite Wins!")
+            sleep(5)
+            pygame.quit()
+            raise SystemExit
+            
         self.xy = (-100, -100)
         self.rect.x, self.rect.y = self.xy
     
