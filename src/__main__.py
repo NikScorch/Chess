@@ -125,11 +125,14 @@ class ChessPiece(pygame.sprite.Sprite):
         elif self.attached == False:
             self.rect.x = (self.rect.x+50)//100*100
             self.rect.y = (self.rect.y+50)//100*100
+            self.promote()  # Check for need to promote
 
     def promote(self):
-        self.piece = "q"
-        self.image = pygame.image.load("src/pieces/{}/{}{}.png".format(self.piece_set, self.colour, self.piece))
-        self.image = pygame.transform.scale(self.image, (screen.get_width()/8, screen.get_width()/8)).convert_alpha()
+        if self.piece == "p":
+            if self.colour == "w" and self.rect.y//100 == 0 or self.colour == "b" and self.rect.y//100 == 7:
+                self.piece = "q"
+                self.image = pygame.image.load("src/pieces/{}/{}{}.png".format(self.piece_set, self.colour, self.piece))
+                self.image = pygame.transform.scale(self.image, (screen.get_width()/8, screen.get_width()/8)).convert_alpha()
     def remove(self):
         self.status = False
     
