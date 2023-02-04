@@ -26,6 +26,15 @@
 # posiotion you want ot move to 
 # if its viable, check path to square from starting position
 
+# hypothesis/advanced
+# change arrangement of hte pieces
+# * remove pawns
+# * move all pieces/front row forward
+# * draught formation for pieces
+#
+# add saving of progress and resume progress
+# autosave? yessss
+
 
 import pygame
 from random import randint
@@ -52,6 +61,9 @@ def board_to_coord(square):
 def coord_to_board(coord):
     convert_table = ["a", "b", "c", "d", "e", "f", "g", "h"]
     return convert_table[coord[0]] + str(8-coord[1])
+
+def slope(point1, point2):
+    return (point2[1]-point1[1])/(point2[0]-point1[0])
 
 
 def draw_board():
@@ -113,9 +125,9 @@ class ChessPiece(pygame.sprite.Sprite):
 
         if start_pos == None:
             # Random start position
-            self.rect.x = randint(0, 7)*100
-            self.rect.y = randint(0, 7)*100
-            self.xy = (self.rect.x//100, self.rect.y//100)
+            self.rect.x = randint(0, 7)*100                     # Current X pos
+            self.rect.y = randint(0, 7)*100                     # Current Y pos
+            self.xy = (self.rect.x//100, self.rect.y//100)      # Where the piece just was
         else:
             # Set start position
             self.xy = board_to_coord(start_pos)
@@ -127,11 +139,15 @@ class ChessPiece(pygame.sprite.Sprite):
             self.aggression = True
             pos = pygame.mouse.get_pos()
             self.rect.x, self.rect.y = (pos[0] - self.rect.width/2, pos[1] - self.rect.width/2)
-            self.xy = (self.rect.x//100, self.rect.y//100)
         elif self.attached == False:
             self.rect.x = (self.rect.x+50)//100*100
             self.rect.y = (self.rect.y+50)//100*100
-            self.xy = (self.rect.x//100, self.rect.y//100)
+
+            if self.check_position((self.rect.x//100, self.rect.y//100)):
+                self.xy = (self.rect.x//100, self.rect.y//100)
+            else:
+                self.rect.x = self.xy[0]*100
+                self.rect.y = self.xy[1]*100
 
             self.promote()  # Check for need to promote
             # Remove enemy piece if aggressive
@@ -146,6 +162,59 @@ class ChessPiece(pygame.sprite.Sprite):
                     if piece.xy == self.xy:
                         piece.remove()
                 self.aggression = False
+            
+    def check_position(self, new_pos):
+        if self.xy == new_pos:
+            return False
+
+        if round(dist(self.xy, new_pos), 1) == 1.4 or round(dist(self.xy, new_pos), 1) == 1.0:
+            if self.piece == "p":   # pawn
+                if self.colour == "w":
+                    # if still on the first rank
+                    if self.xy[1] == 6:
+                        if self.xy[1] - new_pos[1] == 2:
+                            return True
+                    if self.xy[1] - new_pos[1] == 1:
+                        return True
+                if self.colour == "b":
+                    # if still on the first rank
+                    if self.xy[1] == 1:
+                        if self.xy[1] - new_pos[1] == -2:
+                            return True
+                    if self.xy[1] - new_pos[1] == -1:
+                        return True
+
+            return False
+        if self.piece == "r":   # rook
+            if self.xy[0] == new_pos[0] or self.xy[1] == new_pos[1]:
+                return True
+            else:
+                return False
+        if self.piece == "b":   # bishop
+            if self.xy[0] == new_pos[0] or self.xy[1] == new_pos[1]:
+                return False
+            if abs(slope(self.xy, new_pos)) == 1.0:
+                return True
+            else:
+                return False
+        if self.piece == "n":   # knight
+            if round(dist(self.xy, new_pos), 1) == 2.2:
+                return True
+            else:
+                return False
+        if self.piece == "k":   # king
+            if round(dist(self.xy, new_pos), 1) == 1.4 or round(dist(self.xy, new_pos), 1) == 1.0:
+                return True
+            else:
+                return False
+        if self.piece == "q":   # queen
+            if self.xy[0] == new_pos[0] or self.xy[1] == new_pos[1]:
+                return True
+            elif abs(slope(self.xy, new_pos)) == 1.0:
+                return True
+            else:
+                return False
+        pass
 
     def promote(self):
         if self.piece == "p":
@@ -238,11 +307,16 @@ def __main__():
                 pygame.quit()
                 raise SystemExit
 
-            if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.MOUSEBUTTONUP:
+            if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
                 found_piece = find_closest(white + black, mouse_pos)
                 if not found_piece == None:
-                    found_piece.attached = not found_piece.attached 
+                    found_piece.attached = True
+            if event.type == pygame.MOUSEBUTTONUP:
+                mouse_pos = pygame.mouse.get_pos()
+                found_piece = find_closest(white + black, mouse_pos)
+                if not found_piece == None:
+                    found_piece.attached = False
             
             if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP:
                 if event.key == pygame.K_SPACE:
