@@ -167,8 +167,8 @@ class ChessPiece(pygame.sprite.Sprite):
         if self.xy == new_pos:
             return False
 
-        if round(dist(self.xy, new_pos), 1) == 1.4 or round(dist(self.xy, new_pos), 1) == 1.0:
-            if self.piece == "p":   # pawn
+        if self.piece == "p":   # pawn
+            if round(dist(self.xy, new_pos), 1) in (1.4,1.0,2.0):
                 if self.colour == "w":
                     # if still on the first rank
                     if self.xy[1] == 6:
@@ -225,12 +225,9 @@ class ChessPiece(pygame.sprite.Sprite):
     def remove(self):
         if self.piece == "k":
             if self.colour == "w":
-                print("White has been CheckMated!\nBlack Wins!")
+                winner[0] = "Black"
             elif self.colour == "b":
-                print("Black has been CheckMated!\nWhite Wins!")
-            sleep(5)
-            pygame.quit()
-            raise SystemExit
+                winner[0] = "White"
             
         self.xy = (-100, -100)
         self.rect.x, self.rect.y = self.xy
@@ -299,6 +296,8 @@ allsprites = pygame.sprite.RenderPlain(pieces)
 
 board_font = pygame.font.SysFont("FreeSans", 15, bold=True)
 
+winner = [None] # Set to "Black" or "White" depending winner, set None if undecided
+
 def __main__():
     while True:
         # Player Inputs
@@ -334,6 +333,8 @@ def __main__():
         #fps_counter = pygame.font.render("FPS:", ())
         fps_counter = board_font.render('FPS: {}'.format(str(round(clock.get_fps(), 1))), False, (150, 50, 50))
         
+        if winner[0]:
+            winner_text = board_font.render("{} has won!".format(winner[0]), False, (0,255,255))
 
 
 
@@ -342,6 +343,8 @@ def __main__():
         allsprites.draw(screen)
 
         screen.blit(fps_counter, (0,0))
+        if winner[0]:
+            screen.blit(winner_text, (350,0))
 
 
         pygame.display.flip()
