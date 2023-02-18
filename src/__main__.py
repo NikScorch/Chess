@@ -109,6 +109,8 @@ class ChessPiece(pygame.sprite.Sprite):
             self.rect.y = self.xy[1]*100
 
     def update(self):
+        if self.xy == (-1, -1):
+            return
         if self.attached == True:
             self.aggression = True
             pos = pygame.mouse.get_pos()
@@ -200,12 +202,13 @@ class ChessPiece(pygame.sprite.Sprite):
     def remove(self):
         if self.piece == "k":
             if self.colour == "w":
-                winner[0] = "Black"
+                board.winner = "Black"
             elif self.colour == "b":
-                winner[0] = "White"
+                board.winner = "White"
             
-        self.xy = (-100, -100)
-        self.rect.x, self.rect.y = self.xy
+        self.xy = (-1, -1)
+        self.rect.x = self.xy[0]*100
+        self.rect.y = self.xy[1]*100
     
 
 class Board():
@@ -236,6 +239,7 @@ class Board():
         self.allsprites = pygame.sprite.RenderPlain(self.pieces)
         
         self.turn = self.white
+        self.winner = None # Set to "Black" or "White" depending winner, set None if undecided
 
 
     def draw(self):
@@ -328,8 +332,6 @@ clock = pygame.time.Clock()
 
 board = Board()
 board.default_game()
-print(board.pieces == [board.white + board.black])
-winner = [None] # Set to "Black" or "White" depending winner, set None if undecided
 
 def __main__():
     while True:
@@ -366,8 +368,8 @@ def __main__():
         #fps_counter = pygame.font.render("FPS:", ())
         fps_counter = board.font.render('FPS: {}'.format(str(round(clock.get_fps(), 1))), False, (150, 50, 50))
         
-        if winner[0]:
-            winner_text = board.font.render("{} has won!".format(winner[0]), False, (0,255,255))
+        if board.winner:
+            winner_text = board.font.render("{} has won!".format(board.winner), False, (0,255,255))
 
 
 
@@ -376,7 +378,7 @@ def __main__():
         board.allsprites.draw(screen)
 
         screen.blit(fps_counter, (0,0))
-        if winner[0]:
+        if board.winner:
             screen.blit(winner_text, (350,0))
 
 
