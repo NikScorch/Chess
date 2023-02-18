@@ -40,12 +40,15 @@ import pygame
 from random import randint
 from math import dist
 from time import sleep
+import json
 
 # These functions convert array coords into Square Names
 # e.g. (0,0) --> "a8"
 #      "b4"  --> (1,4)
 #      (3,6) --> "d2"
 def board_to_coord(square):
+    if square == (0, 0):
+        return (-1, -1)
     convert_table = {
         "a": 0,
         "b": 1,
@@ -213,16 +216,6 @@ class ChessPiece(pygame.sprite.Sprite):
 
 class Board():
     def __init__(self):
-        self.board = [
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                [],
-                []]
-        
         self.time = 0
         self.moves_white = 0
         self.moves_black = 0
@@ -232,7 +225,7 @@ class Board():
 
         self.white = []
         self.black = []
-        self.pieces = [self.white + self.black]
+        self.pieces = self.white + self.black
 
         self.whitesprites = pygame.sprite.RenderPlain(self.white)
         self.blacksprites = pygame.sprite.RenderPlain(self.black)
@@ -303,7 +296,7 @@ class Board():
             ChessPiece(self, self.chess_set, "bn", "g8"),
             ChessPiece(self, self.chess_set, "br", "h8")
         ]
-        self.pieces = [self.white + self.black]
+        self.pieces = self.white + self.black
         
         self.whitesprites = pygame.sprite.RenderPlain(self.white)
         self.blacksprites = pygame.sprite.RenderPlain(self.black)
@@ -318,10 +311,67 @@ class Board():
             self.turn = self.white
 
     def save_game(self):
-        pass
-    
+        # (board, piece_set, piece, start_pos=None)
+        board = []
+        dead = []
+        if self.turn is self.white:
+            turn = "white"
+        elif self.turn is self.black:
+            turn = "black"
+
+        for piece in self.pieces:
+            if piece.xy == (-1, -1):
+                # all dead pieces go to xy=(-1,-1)
+                dead.append((piece.colour + piece.piece))
+            else:
+                board.append((piece.colour + piece.piece, piece.xy))
+        
+        data = [board, dead, turn]
+        print(data)
+
+        with open('game.chess', 'w') as filehandle:
+            json.dump(data, filehandle, indent=2)
+        
     def load_game(self):
-        pass
+        with open('game.chess', 'r') as filehandle:
+            data = json.load(filehandle)
+
+        self.white = []
+        self.black = []
+
+        colour = None
+        # load alive pieces
+        for piece in data[0]:
+            if piece[0][0] == "w":
+                colour = self.white
+            if piece[0][0] == "b":
+                colour = self.black
+            colour.append(
+                ChessPiece(self, self.chess_set, piece[0], coord_to_board(piece[1]))
+            )
+        # load dead pieces
+        for piece in data[1]:
+            if piece[0][0] == "w":
+                colour = self.white
+            if piece[0][0] == "b":
+                colour = self.black
+            colour.append(
+                ChessPiece(self, self.chess_set, piece, (0, 0))
+            )
+
+        # reload data structures
+        self.pieces = self.white + self.black
+        
+        self.whitesprites = pygame.sprite.RenderPlain(self.white)
+        self.blacksprites = pygame.sprite.RenderPlain(self.black)
+        self.allsprites = pygame.sprite.RenderPlain(self.pieces)
+        
+        # evalutate next turn
+        if data[2] == "white":
+            self.turn = self.white
+        elif data[2] == "black":
+            self.turn = self.black
+
 
 pygame.init()
 
@@ -357,6 +407,12 @@ def __main__():
                     for piece in board.white + board.black:
                         if piece.piece == "p":
                             piece.remove()
+            
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_s:
+                    board.save_game()
+                if event.key == pygame.K_a:
+                    board.load_game()
 
 
 
