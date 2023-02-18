@@ -84,7 +84,7 @@ def find_closest(pieces, mouse_pos):
     return closest_piece
 
 class ChessPiece(pygame.sprite.Sprite):
-    def __init__(self, piece_set, piece, start_pos=None):
+    def __init__(self, board, piece_set, piece, start_pos=None):
         pygame.sprite.Sprite.__init__(self)
         self.piece_set = piece_set
         self.colour = piece[0]
@@ -119,6 +119,7 @@ class ChessPiece(pygame.sprite.Sprite):
 
             if self.check_position((self.rect.x//100, self.rect.y//100)):
                 self.xy = (self.rect.x//100, self.rect.y//100)
+                board.turn_end()    # only change turn if a piece changes position
             else:
                 self.rect.x = self.xy[0]*100
                 self.rect.y = self.xy[1]*100
@@ -128,9 +129,9 @@ class ChessPiece(pygame.sprite.Sprite):
             if self.aggression:
                 # determine enemy
                 if self.colour == "w":
-                    enemy = black
+                    enemy = board.black
                 elif self.colour == "b":
-                    enemy = white
+                    enemy = board.white
                 # Remove piece
                 for piece in enemy:
                     if piece.xy == self.xy:
@@ -233,6 +234,8 @@ class Board():
         self.whitesprites = pygame.sprite.RenderPlain(self.white)
         self.blacksprites = pygame.sprite.RenderPlain(self.black)
         self.allsprites = pygame.sprite.RenderPlain(self.pieces)
+        
+        self.turn = self.white
 
 
     def draw(self):
@@ -261,46 +264,54 @@ class Board():
     def default_game(self):
         self.chess_set = "cardinal_png"
         self.white = [
-            ChessPiece(self.chess_set, "wp", "a2"),
-            ChessPiece(self.chess_set, "wp", "b2"),
-            ChessPiece(self.chess_set, "wp", "c2"),
-            ChessPiece(self.chess_set, "wp", "d2"),
-            ChessPiece(self.chess_set, "wp", "e2"),
-            ChessPiece(self.chess_set, "wp", "f2"),
-            ChessPiece(self.chess_set, "wp", "g2"),
-            ChessPiece(self.chess_set, "wp", "h2"),
-            ChessPiece(self.chess_set, "wr", "a1"),
-            ChessPiece(self.chess_set, "wn", "b1"),
-            ChessPiece(self.chess_set, "wb", "c1"),
-            ChessPiece(self.chess_set, "wq", "d1"),
-            ChessPiece(self.chess_set, "wk", "e1"),
-            ChessPiece(self.chess_set, "wb", "f1"),
-            ChessPiece(self.chess_set, "wn", "g1"),
-            ChessPiece(self.chess_set, "wr", "h1")
+            ChessPiece(self, self.chess_set, "wp", "a2"),
+            ChessPiece(self, self.chess_set, "wp", "b2"),
+            ChessPiece(self, self.chess_set, "wp", "c2"),
+            ChessPiece(self, self.chess_set, "wp", "d2"),
+            ChessPiece(self, self.chess_set, "wp", "e2"),
+            ChessPiece(self, self.chess_set, "wp", "f2"),
+            ChessPiece(self, self.chess_set, "wp", "g2"),
+            ChessPiece(self, self.chess_set, "wp", "h2"),
+            ChessPiece(self, self.chess_set, "wr", "a1"),
+            ChessPiece(self, self.chess_set, "wn", "b1"),
+            ChessPiece(self, self.chess_set, "wb", "c1"),
+            ChessPiece(self, self.chess_set, "wq", "d1"),
+            ChessPiece(self, self.chess_set, "wk", "e1"),
+            ChessPiece(self, self.chess_set, "wb", "f1"),
+            ChessPiece(self, self.chess_set, "wn", "g1"),
+            ChessPiece(self, self.chess_set, "wr", "h1")
         ]
         self.black = [
-            ChessPiece(self.chess_set, "bp", "a7"),
-            ChessPiece(self.chess_set, "bp", "b7"),
-            ChessPiece(self.chess_set, "bp", "c7"),
-            ChessPiece(self.chess_set, "bp", "d7"),
-            ChessPiece(self.chess_set, "bp", "e7"),
-            ChessPiece(self.chess_set, "bp", "f7"),
-            ChessPiece(self.chess_set, "bp", "g7"),
-            ChessPiece(self.chess_set, "bp", "h7"),
-            ChessPiece(self.chess_set, "br", "a8"),
-            ChessPiece(self.chess_set, "bn", "b8"),
-            ChessPiece(self.chess_set, "bb", "c8"),
-            ChessPiece(self.chess_set, "bq", "d8"),
-            ChessPiece(self.chess_set, "bk", "e8"),
-            ChessPiece(self.chess_set, "bb", "f8"),
-            ChessPiece(self.chess_set, "bn", "g8"),
-            ChessPiece(self.chess_set, "br", "h8")
+            ChessPiece(self, self.chess_set, "bp", "a7"),
+            ChessPiece(self, self.chess_set, "bp", "b7"),
+            ChessPiece(self, self.chess_set, "bp", "c7"),
+            ChessPiece(self, self.chess_set, "bp", "d7"),
+            ChessPiece(self, self.chess_set, "bp", "e7"),
+            ChessPiece(self, self.chess_set, "bp", "f7"),
+            ChessPiece(self, self.chess_set, "bp", "g7"),
+            ChessPiece(self, self.chess_set, "bp", "h7"),
+            ChessPiece(self, self.chess_set, "br", "a8"),
+            ChessPiece(self, self.chess_set, "bn", "b8"),
+            ChessPiece(self, self.chess_set, "bb", "c8"),
+            ChessPiece(self, self.chess_set, "bq", "d8"),
+            ChessPiece(self, self.chess_set, "bk", "e8"),
+            ChessPiece(self, self.chess_set, "bb", "f8"),
+            ChessPiece(self, self.chess_set, "bn", "g8"),
+            ChessPiece(self, self.chess_set, "br", "h8")
         ]
         self.pieces = [self.white + self.black]
         
         self.whitesprites = pygame.sprite.RenderPlain(self.white)
         self.blacksprites = pygame.sprite.RenderPlain(self.black)
         self.allsprites = pygame.sprite.RenderPlain(self.pieces)
+        
+        self.turn = self.white
+    
+    def turn_end(self):
+        if self.turn is self.white:
+            self.turn = self.black
+        elif self.turn is self.black:
+            self.turn = self.white
 
     def save_game(self):
         pass
@@ -317,6 +328,7 @@ clock = pygame.time.Clock()
 
 board = Board()
 board.default_game()
+print(board.pieces == [board.white + board.black])
 winner = [None] # Set to "Black" or "White" depending winner, set None if undecided
 
 def __main__():
@@ -329,12 +341,12 @@ def __main__():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
-                found_piece = find_closest(board.white + board.black, mouse_pos)
+                found_piece = find_closest(board.turn, mouse_pos)
                 if not found_piece == None:
                     found_piece.attached = True
             if event.type == pygame.MOUSEBUTTONUP:
                 mouse_pos = pygame.mouse.get_pos()
-                found_piece = find_closest(board.white + board.black, mouse_pos)
+                found_piece = find_closest(board.turn, mouse_pos)
                 if not found_piece == None:
                     found_piece.attached = False
             
