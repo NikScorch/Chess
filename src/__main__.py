@@ -65,32 +65,6 @@ def coord_to_board(coord):
 def slope(point1, point2):
     return (point2[1]-point1[1])/(point2[0]-point1[0])
 
-
-def draw_board():
-    box_width = screen.get_width() / 8
-    box_colour = [(255,255,255), (0,0,0)]
-    box_count = 0
-    for i in range(8):
-        for j in range(8):
-            pygame.draw.rect(screen, box_colour[box_count%2], (j*box_width,i*box_width,box_width,box_width))
-            box_count += 1
-        box_count += 1
-    box_count = 1
-    for engraving in range(8):
-        # render numbers first
-        engrave = board_font.render(str(8-engraving), False, box_colour[box_count%2])
-        screen.blit(engrave, (5,100*engraving +5))
-        box_count += 1
-    box_count =0
-    convert_table = ["A", "B", "C", "D", "E", "F", "G", "H"]
-    for engraving in range(8):
-        # render letters second
-        engrave = board_font.render(str(convert_table[engraving]), False, box_colour[box_count%2])
-        screen.blit(engrave, (100*engraving +85, 780))
-        box_count += 1
-    
-
-
 def find_closest(pieces, mouse_pos):
     closest_piece_str = ""
     closest_piece = ""
@@ -233,16 +207,106 @@ class ChessPiece(pygame.sprite.Sprite):
         self.rect.x, self.rect.y = self.xy
     
 
+class Board():
+    def __init__(self):
+        self.board = [
+                [],
+                [],
+                [],
+                [],
+                [],
+                [],
+                [],
+                []]
+        
+        self.time = 0
+        self.moves_white = 0
+        self.moves_black = 0
 
-board = [
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        []]
+        self.chess_set = "cardinal_png"
+        self.font = pygame.font.SysFont("FreeSans", 15, bold=True)
+
+        self.white = []
+        self.black = []
+        self.pieces = [self.white + self.black]
+
+        self.whitesprites = pygame.sprite.RenderPlain(self.white)
+        self.blacksprites = pygame.sprite.RenderPlain(self.black)
+        self.allsprites = pygame.sprite.RenderPlain(self.pieces)
+
+
+    def draw(self):
+        box_width = screen.get_width() / 8
+        box_colour = [(255,255,255), (0,0,0)]
+        box_count = 0
+        for i in range(8):
+            for j in range(8):
+                pygame.draw.rect(screen, box_colour[box_count%2], (j*box_width,i*box_width,box_width,box_width))
+                box_count += 1
+            box_count += 1
+        box_count = 1
+        for engraving in range(8):
+            # render numbers first
+            engrave = self.font.render(str(8-engraving), False, box_colour[box_count%2])
+            screen.blit(engrave, (5,100*engraving +5))
+            box_count += 1
+        box_count =0
+        convert_table = ["A", "B", "C", "D", "E", "F", "G", "H"]
+        for engraving in range(8):
+            # render letters second
+            engrave = self.font.render(str(convert_table[engraving]), False, box_colour[box_count%2])
+            screen.blit(engrave, (100*engraving +85, 780))
+            box_count += 1
+
+    def default_game(self):
+        self.chess_set = "cardinal_png"
+        self.white = [
+            ChessPiece(self.chess_set, "wp", "a2"),
+            ChessPiece(self.chess_set, "wp", "b2"),
+            ChessPiece(self.chess_set, "wp", "c2"),
+            ChessPiece(self.chess_set, "wp", "d2"),
+            ChessPiece(self.chess_set, "wp", "e2"),
+            ChessPiece(self.chess_set, "wp", "f2"),
+            ChessPiece(self.chess_set, "wp", "g2"),
+            ChessPiece(self.chess_set, "wp", "h2"),
+            ChessPiece(self.chess_set, "wr", "a1"),
+            ChessPiece(self.chess_set, "wn", "b1"),
+            ChessPiece(self.chess_set, "wb", "c1"),
+            ChessPiece(self.chess_set, "wq", "d1"),
+            ChessPiece(self.chess_set, "wk", "e1"),
+            ChessPiece(self.chess_set, "wb", "f1"),
+            ChessPiece(self.chess_set, "wn", "g1"),
+            ChessPiece(self.chess_set, "wr", "h1")
+        ]
+        self.black = [
+            ChessPiece(self.chess_set, "bp", "a7"),
+            ChessPiece(self.chess_set, "bp", "b7"),
+            ChessPiece(self.chess_set, "bp", "c7"),
+            ChessPiece(self.chess_set, "bp", "d7"),
+            ChessPiece(self.chess_set, "bp", "e7"),
+            ChessPiece(self.chess_set, "bp", "f7"),
+            ChessPiece(self.chess_set, "bp", "g7"),
+            ChessPiece(self.chess_set, "bp", "h7"),
+            ChessPiece(self.chess_set, "br", "a8"),
+            ChessPiece(self.chess_set, "bn", "b8"),
+            ChessPiece(self.chess_set, "bb", "c8"),
+            ChessPiece(self.chess_set, "bq", "d8"),
+            ChessPiece(self.chess_set, "bk", "e8"),
+            ChessPiece(self.chess_set, "bb", "f8"),
+            ChessPiece(self.chess_set, "bn", "g8"),
+            ChessPiece(self.chess_set, "br", "h8")
+        ]
+        self.pieces = [self.white + self.black]
+        
+        self.whitesprites = pygame.sprite.RenderPlain(self.white)
+        self.blacksprites = pygame.sprite.RenderPlain(self.black)
+        self.allsprites = pygame.sprite.RenderPlain(self.pieces)
+
+    def save_game(self):
+        pass
+    
+    def load_game(self):
+        pass
 
 pygame.init()
 
@@ -251,51 +315,8 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Chess")
 clock = pygame.time.Clock()
 
-chess_set = "cardinal_png"
-white = [
-    ChessPiece(chess_set, "wp", "a2"),
-    ChessPiece(chess_set, "wp", "b2"),
-    ChessPiece(chess_set, "wp", "c2"),
-    ChessPiece(chess_set, "wp", "d2"),
-    ChessPiece(chess_set, "wp", "e2"),
-    ChessPiece(chess_set, "wp", "f2"),
-    ChessPiece(chess_set, "wp", "g2"),
-    ChessPiece(chess_set, "wp", "h2"),
-    ChessPiece(chess_set, "wr", "a1"),
-    ChessPiece(chess_set, "wn", "b1"),
-    ChessPiece(chess_set, "wb", "c1"),
-    ChessPiece(chess_set, "wq", "d1"),
-    ChessPiece(chess_set, "wk", "e1"),
-    ChessPiece(chess_set, "wb", "f1"),
-    ChessPiece(chess_set, "wn", "g1"),
-    ChessPiece(chess_set, "wr", "h1")
-]
-black = [
-    ChessPiece(chess_set, "bp", "a7"),
-    ChessPiece(chess_set, "bp", "b7"),
-    ChessPiece(chess_set, "bp", "c7"),
-    ChessPiece(chess_set, "bp", "d7"),
-    ChessPiece(chess_set, "bp", "e7"),
-    ChessPiece(chess_set, "bp", "f7"),
-    ChessPiece(chess_set, "bp", "g7"),
-    ChessPiece(chess_set, "bp", "h7"),
-    ChessPiece(chess_set, "br", "a8"),
-    ChessPiece(chess_set, "bn", "b8"),
-    ChessPiece(chess_set, "bb", "c8"),
-    ChessPiece(chess_set, "bq", "d8"),
-    ChessPiece(chess_set, "bk", "e8"),
-    ChessPiece(chess_set, "bb", "f8"),
-    ChessPiece(chess_set, "bn", "g8"),
-    ChessPiece(chess_set, "br", "h8")
-]
-
-whitesprites = pygame.sprite.RenderPlain(white)
-blacksprites = pygame.sprite.RenderPlain(black)
-pieces = [white + black]
-allsprites = pygame.sprite.RenderPlain(pieces)
-
-board_font = pygame.font.SysFont("FreeSans", 15, bold=True)
-
+board = Board()
+board.default_game()
 winner = [None] # Set to "Black" or "White" depending winner, set None if undecided
 
 def __main__():
@@ -308,18 +329,18 @@ def __main__():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
-                found_piece = find_closest(white + black, mouse_pos)
+                found_piece = find_closest(board.white + board.black, mouse_pos)
                 if not found_piece == None:
                     found_piece.attached = True
             if event.type == pygame.MOUSEBUTTONUP:
                 mouse_pos = pygame.mouse.get_pos()
-                found_piece = find_closest(white + black, mouse_pos)
+                found_piece = find_closest(board.white + board.black, mouse_pos)
                 if not found_piece == None:
                     found_piece.attached = False
             
             if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP:
                 if event.key == pygame.K_SPACE:
-                    for piece in white + black:
+                    for piece in board.white + board.black:
                         if piece.piece == "p":
                             piece.remove()
 
@@ -327,20 +348,20 @@ def __main__():
 
         # Logical Updates
         #allsprites.update()
-        whitesprites.update()
-        blacksprites.update()
+        board.whitesprites.update()
+        board.blacksprites.update()
         
         #fps_counter = pygame.font.render("FPS:", ())
-        fps_counter = board_font.render('FPS: {}'.format(str(round(clock.get_fps(), 1))), False, (150, 50, 50))
+        fps_counter = board.font.render('FPS: {}'.format(str(round(clock.get_fps(), 1))), False, (150, 50, 50))
         
         if winner[0]:
-            winner_text = board_font.render("{} has won!".format(winner[0]), False, (0,255,255))
+            winner_text = board.font.render("{} has won!".format(winner[0]), False, (0,255,255))
 
 
 
         # Graphics Rendering
-        draw_board()
-        allsprites.draw(screen)
+        board.draw()
+        board.allsprites.draw(screen)
 
         screen.blit(fps_counter, (0,0))
         if winner[0]:
