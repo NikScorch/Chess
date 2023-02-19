@@ -327,7 +327,6 @@ class Board():
                 board.append((piece.colour + piece.piece, piece.xy))
         
         data = [board, dead, turn]
-        print(data)
 
         with open('game.chess', 'w') as filehandle:
             json.dump(data, filehandle, indent=2)
@@ -413,6 +412,8 @@ def __main__():
                     board.save_game()
                 if event.key == pygame.K_a:
                     board.load_game()
+                if event.key == pygame.K_r:
+                    board.default_game()
 
 
 
