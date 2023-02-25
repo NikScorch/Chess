@@ -39,7 +39,7 @@
 import pygame
 from random import randint
 from math import dist
-from time import sleep
+from time import time
 import json
 
 # These functions convert array coords into Square Names
@@ -123,8 +123,8 @@ class ChessPiece(pygame.sprite.Sprite):
             self.rect.y = (self.rect.y+50)//100*100
 
             if self.check_position((self.rect.x//100, self.rect.y//100)):
+                board.turn_end(self.colour, self.piece, self.xy, (self.rect.x//100, self.rect.y//100))    # only change turn if a piece changes position
                 self.xy = (self.rect.x//100, self.rect.y//100)
-                board.turn_end()    # only change turn if a piece changes position
             else:
                 self.rect.x = self.xy[0]*100
                 self.rect.y = self.xy[1]*100
@@ -216,9 +216,9 @@ class ChessPiece(pygame.sprite.Sprite):
 
 class Board():
     def __init__(self):
-        self.time = 0
-        self.moves_white = 0
-        self.moves_black = 0
+        self.game_start = time()
+        self.moves = 0
+        self.move_set = []
 
         self.chess_set = "cardinal_png"
         self.font = pygame.font.SysFont("FreeSans", 15, bold=True)
@@ -259,7 +259,12 @@ class Board():
             box_count += 1
 
     def default_game(self):
+        self.game_start = time()
+        self.moves = 0
+        self.move_set = []
+
         self.chess_set = "cardinal_png"
+        #self.chess_set = "california_png"
         self.white = [
             ChessPiece(self, self.chess_set, "wp", "a2"),
             ChessPiece(self, self.chess_set, "wp", "b2"),
@@ -304,7 +309,11 @@ class Board():
         
         self.turn = self.white
     
-    def turn_end(self):
+    def turn_end(self, color=None, piece=None, start_pos=None, end_pos=None):
+        # move_set entry: (absolute_time, color, piece, start_pos, end_pos)
+        if color and piece and start_pos and end_pos:
+            self.move_set.append((time(), color, piece, start_pos, end_pos))
+        self.moves += 1
         if self.turn is self.white:
             self.turn = self.black
         elif self.turn is self.black:
@@ -326,7 +335,7 @@ class Board():
             else:
                 board.append((piece.colour + piece.piece, piece.xy))
         
-        data = [board, dead, turn]
+        data = [board, dead, turn, self.move_set]
 
         with open('game.chess', 'w') as filehandle:
             json.dump(data, filehandle, indent=2)
@@ -370,6 +379,9 @@ class Board():
             self.turn = self.white
         elif data[2] == "black":
             self.turn = self.black
+        
+        # load move history
+        self.move_set = data[3]
 
 
 pygame.init()
@@ -388,6 +400,9 @@ def __main__():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
+                print("\n" + "="*28 + "\n\tGame Stats\n" + "="*28)
+                print("Total Moves: {}\nPlay Time: {} seconds".format(board.moves, round(time() - board.game_start)))
+                print()
                 raise SystemExit
 
             if event.type == pygame.MOUSEBUTTONDOWN:
