@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/python3
 #       _
 #   ___| |__   ___  ___ ___
 #  / __| '_ \ / _ \/ __/ __|
@@ -15,7 +15,7 @@
 # | |___|  _  | |___ ___) |__) |
 #  \____|_| |_|_____|____/____/
 #
-#
+# 
 #
 # # of moves
 # time
@@ -34,7 +34,8 @@
 #
 # add saving of progress and resume progress
 # autosave? yessss
-
+#
+# add references to important pieces of code, ie. their line number (and what it is doing) (mention in the readme?)
 
 import pygame
 from random import randint
@@ -89,6 +90,7 @@ def find_closest(pieces, mouse_pos):
 class ChessPiece(pygame.sprite.Sprite):
     def __init__(self, board, piece_set, piece, start_pos=None):
         pygame.sprite.Sprite.__init__(self)
+        self.board = board
         self.piece_set = piece_set
         self.colour = piece[0]
         self.piece = piece[1]
@@ -97,7 +99,7 @@ class ChessPiece(pygame.sprite.Sprite):
         self.aggression = False
 
         self.image = pygame.image.load("src/pieces/{}/{}{}.png".format(self.piece_set, self.colour, self.piece))
-        self.image = pygame.transform.scale(self.image, (screen.get_width()/8, screen.get_width()/8)).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (self.board.screen.get_width()/8, self.board.screen.get_width()/8)).convert_alpha()
         self.rect = self.image.get_rect()
 
         if start_pos == None:
@@ -123,7 +125,7 @@ class ChessPiece(pygame.sprite.Sprite):
             self.rect.y = (self.rect.y+50)//100*100
 
             if self.check_position((self.rect.x//100, self.rect.y//100)):
-                board.turn_end(self.colour, self.piece, self.xy, (self.rect.x//100, self.rect.y//100))    # only change turn if a piece changes position
+                self.board.turn_end(self.colour, self.piece, self.xy, (self.rect.x//100, self.rect.y//100))    # only change turn if a piece changes position
                 self.xy = (self.rect.x//100, self.rect.y//100)
             else:
                 self.rect.x = self.xy[0]*100
@@ -134,9 +136,9 @@ class ChessPiece(pygame.sprite.Sprite):
             if self.aggression:
                 # determine enemy
                 if self.colour == "w":
-                    enemy = board.black
+                    enemy = self.board.black
                 elif self.colour == "b":
-                    enemy = board.white
+                    enemy = self.board.white
                 # Remove piece
                 for piece in enemy:
                     if piece.xy == self.xy:
@@ -201,13 +203,13 @@ class ChessPiece(pygame.sprite.Sprite):
             if self.colour == "w" and self.rect.y//100 == 0 or self.colour == "b" and self.rect.y//100 == 7:
                 self.piece = "q"
                 self.image = pygame.image.load("src/pieces/{}/{}{}.png".format(self.piece_set, self.colour, self.piece))
-                self.image = pygame.transform.scale(self.image, (screen.get_width()/8, screen.get_width()/8)).convert_alpha()
+                self.image = pygame.transform.scale(self.image, (self.board.screen.get_width()/8, self.board.screen.get_width()/8)).convert_alpha()
     def remove(self):
         if self.piece == "k":
             if self.colour == "w":
-                board.winner = "Black"
+                self.board.winner = "Black"
             elif self.colour == "b":
-                board.winner = "White"
+                self.board.winner = "White"
             
         self.xy = (-1, -1)
         self.rect.x = self.xy[0]*100
@@ -215,7 +217,9 @@ class ChessPiece(pygame.sprite.Sprite):
     
 
 class Board():
-    def __init__(self):
+    def __init__(self, ctx):
+        self.screen = ctx
+
         self.game_start = time()
         self.moves = 0
         self.move_set = []
@@ -236,26 +240,26 @@ class Board():
 
 
     def draw(self):
-        box_width = screen.get_width() / 8
+        box_width = self.screen.get_width() / 8
         box_colour = [(255,255,255), (0,0,0)]
         box_count = 0
         for i in range(8):
             for j in range(8):
-                pygame.draw.rect(screen, box_colour[box_count%2], (j*box_width,i*box_width,box_width,box_width))
+                pygame.draw.rect(self.screen, box_colour[box_count%2], (j*box_width,i*box_width,box_width,box_width))
                 box_count += 1
             box_count += 1
         box_count = 1
         for engraving in range(8):
             # render numbers first
             engrave = self.font.render(str(8-engraving), False, box_colour[box_count%2])
-            screen.blit(engrave, (5,100*engraving +5))
+            self.screen.blit(engrave, (5,100*engraving +5))
             box_count += 1
         box_count =0
         convert_table = ["A", "B", "C", "D", "E", "F", "G", "H"]
         for engraving in range(8):
             # render letters second
             engrave = self.font.render(str(convert_table[engraving]), False, box_colour[box_count%2])
-            screen.blit(engrave, (100*engraving +85, 780))
+            self.screen.blit(engrave, (100*engraving +85, 780))
             box_count += 1
 
     def default_game(self):
@@ -384,17 +388,18 @@ class Board():
         self.move_set = data[3]
 
 
-pygame.init()
-
-size = width, height = 800, 800
-screen = pygame.display.set_mode(size)
-pygame.display.set_caption("Chess")
-clock = pygame.time.Clock()
-
-board = Board()
-board.default_game()
 
 def __main__():
+    pygame.init()
+
+    size = width, height = 800, 800
+    screen = pygame.display.set_mode(size)
+    pygame.display.set_caption("Chess")
+    clock = pygame.time.Clock()
+
+    board = Board(screen)
+    board.default_game()
+
     while True:
         # Player Inputs
         for event in pygame.event.get():
