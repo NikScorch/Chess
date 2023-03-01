@@ -19,7 +19,5 @@ Run ```git clone https://github.com/NikScorch/Chess.git``` to copy the source co
 
 Python 3.10 or higher is required, it can be download from [python.org](https://www.python.org/downloads/)
 
-
-
 The **pip** package manager can install all the dependencies for the project. It is packaged with python on windows but may need to installed through your system package manager on linux. To install the projects dependencies, run ```pip -r requirements.txt```
 ```python3 src/__main__.py```
