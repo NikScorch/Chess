@@ -1,25 +1,62 @@
 #!/usr/bin/python3
 from chess import *
-
 import json
-with open("game.chess", "r") as filehandler:
-    data = json.load(filehandler)
-    
-print("Total moves:\t{}".format(len(data[3])))
-print("Pieces taken:\t{}".format(len(data[2])))
 
 
-squares = {}
-for x in range(0, 8):
-    for y in range(0, 8):
-        squares[(x, y)] = 0
+# check to make sure data doesnt change
+def get_largest(dictionary, figures=1):
+    data = list(dictionary.items())
+    largest_values = []
+    for i in range(figures):
+        highest_value = ((0, 0), 0)
+        for position, value in enumerate(data):
+            if highest_value[1] <= value[1]:
+                highest_value = value
+        largest_values.append(highest_value)
+        data.remove(highest_value)
+    return largest_values
 
-# populate with move_to data (not move from)
-for move in data[3]:
-    squares[tuple(move[4])] += 1
+def average_time(move_set):
+    avg = 0
+    div = len(move_set)
+    for num in move_set:
+        avg += num[0]
+    avg = avg / div
+    return avg
 
-most_common_square = coord_to_board(max(squares, key=squares.get))
-most_common_square_uses = max(squares.values())
-print("Most commonly moved to square: {}\nMoved to {} times"
-      .format(most_common_square, most_common_square_uses))
 
+def analyse(file):
+    print("\n" + "="*28 + "\n\tGame Stats\n" + "="*28)
+    print("Save File: {}\n".format(file))
+
+    with open(file, "r") as filehandler:
+        data = json.load(filehandler)
+        
+    print("Total moves:\t{}".format(len(data[3])))
+    print("Pieces taken:\t{}".format(len(data[1])))
+    print("Avg turn time:\t{} seconds".format(round(average_time(data[3]), 1)))
+
+
+    squares = {}
+    # populate with every chess square
+    for x in range(0, 8):
+        for y in range(0, 8):
+            squares[(x, y)] = 0
+    # populate with "move_to" data (not "move_from")
+    for move in data[3]:
+        squares[tuple(move[4])] += 1
+
+
+    print("\nMost commonly vistied squares\n┏━━━━━━━┳━━━━━━━┓\n┃Square\t┃Count\t┃\n┣━━━━━━━╋━━━━━━━┫")
+    most_visited_squares = get_largest(squares, 4)
+    for i in most_visited_squares:
+        print("┃ {}\t┃ {}\t┃".format(coord_to_board(i[0]), i[1]))
+    print("┗━━━━━━━┻━━━━━━━┛")
+
+
+def main():
+    analyse("saves/game1.chess")
+    analyse("saves/game2.chess")
+
+if __name__ == "__main__":
+    main()
