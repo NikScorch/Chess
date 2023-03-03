@@ -30,8 +30,26 @@ def stack_moves(base, stack):
     for move in stack:
         base[tuple(move[4])] += 1
     return base
+def stack_moves_file(base, file):
+    with open(file, "r") as filehandler:
+        data = json.load(filehandler)
+    # layer multiple layers of data from different stacks onto the same base
+    # populate with "move_to" data (not "move_from")
+    for move in data[3]:
+        base[tuple(move[4])] += 1
+    return base
 
-def heat_map(file):
+def heat_map(board_data, file):
+    # "file" is save dir
+    # assume chess board diction as input
+    map = pygame.Surface((800, 800))
+    box_width = 100
+    for i in range(8):
+        for j in range(8):
+            pygame.draw.rect(map, (10*board_data[(j, i)], 0, 0), (j*box_width,i*box_width,box_width,box_width))
+    pygame.image.save(map, file)
+def heat_map_file(file, save):
+    # "file" is open dir
     with open(file, "r") as filehandler:
         data = json.load(filehandler)
     
@@ -42,13 +60,22 @@ def heat_map(file):
             squares[(x, y)] = 0
     squares = stack_moves(squares, data[3])
 
-    screen = pygame.Surface((800, 800))
-    box_width = 100
-    for i in range(8):
-        for j in range(8):
-            pygame.draw.rect(screen, (20*squares[(j, i)], 0, 0), (j*box_width,i*box_width,box_width,box_width))
-    pygame.image.save(screen, "stats/{}-heatmap.png".format(file.replace("/","_")))
+    heat_map(squares, save)
 
+    #screen = pygame.Surface((800, 800))
+    #box_width = 100
+    #for i in range(8):
+    #    for j in range(8):
+    #        pygame.draw.rect(screen, (10*squares[(j, i)], 0, 0), (j*box_width,i*box_width,box_width,box_width))
+    #pygame.image.save(screen, "stats/{}-heatmap.png".format(file.replace("/","_")))
+
+def make_board():
+    squares = {}
+    # populate with every chess square
+    for x in range(0, 8):
+        for y in range(0, 8):
+            squares[(x, y)] = 0
+    return squares
 
 def analyse(file):
     print("\n" + "="*28 + "\n\tGame Stats\n" + "="*28)
@@ -62,11 +89,7 @@ def analyse(file):
     print("Avg turn time:\t{} seconds".format(round(average_time(data[3]), 1)))
 
 
-    squares = {}
-    # populate with every chess square
-    for x in range(0, 8):
-        for y in range(0, 8):
-            squares[(x, y)] = 0
+    squares = make_board()
     squares = stack_moves(squares, data[3])
 
 
@@ -82,11 +105,17 @@ def main():
     analyse("saves/game2.chess")
     analyse("saves/game3.chess")
     analyse("saves/game4.chess")
+    heat_map_file("saves/game1.chess", "stats/game1.png")
+    heat_map_file("saves/game2.chess", "stats/game2.png")
+    heat_map_file("saves/game3.chess", "stats/game3.png")
+    heat_map_file("saves/game4.chess", "stats/game4.png")
 
-    heat_map("saves/game1.chess")
-    heat_map("saves/game2.chess")
-    heat_map("saves/game3.chess")
-    heat_map("saves/game4.chess")
+    board = make_board()
+    board = stack_moves_file(board, "saves/game1.chess")
+    board = stack_moves_file(board, "saves/game2.chess")
+    board = stack_moves_file(board, "saves/game3.chess")
+    board = stack_moves_file(board, "saves/game4.chess")
+    heat_map(board, "stats/avg.png")
 
 if __name__ == "__main__":
     main()
