@@ -9,7 +9,7 @@ def get_largest(dictionary, figures=1):
     largest_values = []
     for i in range(figures):
         highest_value = ((0, 0), 0)
-        for position, value in enumerate(data):
+        for value in data:
             if highest_value[1] <= value[1]:
                 highest_value = value
         largest_values.append(highest_value)
@@ -24,6 +24,12 @@ def average_time(move_set):
     avg = avg / div
     return avg
 
+def stack_moves(base, stack):
+    # layer multiple layers of data from different stacks onto the same base
+    # populate with "move_to" data (not "move_from")
+    for move in stack:
+        base[tuple(move[4])] += 1
+    return base
 
 def analyse(file):
     print("\n" + "="*28 + "\n\tGame Stats\n" + "="*28)
@@ -42,9 +48,7 @@ def analyse(file):
     for x in range(0, 8):
         for y in range(0, 8):
             squares[(x, y)] = 0
-    # populate with "move_to" data (not "move_from")
-    for move in data[3]:
-        squares[tuple(move[4])] += 1
+    squares = stack_moves(squares, data[3])
 
 
     print("\nMost commonly vistied squares\n┏━━━━━━━┳━━━━━━━┓\n┃Square\t┃Count\t┃\n┣━━━━━━━╋━━━━━━━┫")
@@ -57,6 +61,8 @@ def analyse(file):
 def main():
     analyse("saves/game1.chess")
     analyse("saves/game2.chess")
+    analyse("saves/game3.chess")
+    analyse("saves/game4.chess")
 
 if __name__ == "__main__":
     main()
