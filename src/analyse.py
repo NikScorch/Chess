@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-from chess import *
+import pygame
 import json
-
+from chess import *
 
 # check to make sure data doesnt change
 def get_largest(dictionary, figures=1):
@@ -30,6 +30,25 @@ def stack_moves(base, stack):
     for move in stack:
         base[tuple(move[4])] += 1
     return base
+
+def heat_map(file):
+    with open(file, "r") as filehandler:
+        data = json.load(filehandler)
+    
+    squares = {}
+    # populate with every chess square
+    for x in range(0, 8):
+        for y in range(0, 8):
+            squares[(x, y)] = 0
+    squares = stack_moves(squares, data[3])
+
+    screen = pygame.Surface((800, 800))
+    box_width = 100
+    for i in range(8):
+        for j in range(8):
+            pygame.draw.rect(screen, (20*squares[(j, i)], 0, 0), (j*box_width,i*box_width,box_width,box_width))
+    pygame.image.save(screen, "stats/{}-heatmap.png".format(file.replace("/","_")))
+
 
 def analyse(file):
     print("\n" + "="*28 + "\n\tGame Stats\n" + "="*28)
@@ -63,6 +82,11 @@ def main():
     analyse("saves/game2.chess")
     analyse("saves/game3.chess")
     analyse("saves/game4.chess")
+
+    heat_map("saves/game1.chess")
+    heat_map("saves/game2.chess")
+    heat_map("saves/game3.chess")
+    heat_map("saves/game4.chess")
 
 if __name__ == "__main__":
     main()
