@@ -97,6 +97,7 @@ class ChessPiece(pygame.sprite.Sprite):
         self.attached = False                   # Picked up with mouse
         self.status = True                      # Alive or Dead/True or False
         self.aggression = False
+        self.moved = False
 
         self.image = pygame.image.load("src/pieces/{}/{}{}.png".format(self.piece_set, self.colour, self.piece))
         self.image = pygame.transform.scale(self.image, (self.board.screen.get_width()/8, self.board.screen.get_width()/8)).convert_alpha()
@@ -127,6 +128,7 @@ class ChessPiece(pygame.sprite.Sprite):
             if self.check_position((self.rect.x//100, self.rect.y//100)):
                 self.board.turn_end(self.colour, self.piece, self.xy, (self.rect.x//100, self.rect.y//100))    # only change turn if a piece changes position
                 self.xy = (self.rect.x//100, self.rect.y//100)
+                self.moved = True
             else:
                 self.rect.x = self.xy[0]*100
                 self.rect.y = self.xy[1]*100
@@ -149,54 +151,79 @@ class ChessPiece(pygame.sprite.Sprite):
         if self.xy == new_pos:
             return False
 
-        if self.piece == "p":   # pawn
-            if round(dist(self.xy, new_pos), 1) in (1.4,1.0,2.0):
-                if self.colour == "w":
-                    # if still on the first rank
-                    if self.xy[1] == 6:
-                        if self.xy[1] - new_pos[1] == 2:
+        match self.piece:
+            case "p":
+                if round(dist(self.xy, new_pos), 1) in (1.4,1.0,2.0):
+                    if self.colour == "w":
+                        # if still on the first rank
+                        if self.xy[1] == 6:
+                            if self.xy[1] - new_pos[1] == 2:
+                                return True
+                        if self.xy[1] - new_pos[1] == 1:
                             return True
-                    if self.xy[1] - new_pos[1] == 1:
-                        return True
-                if self.colour == "b":
-                    # if still on the first rank
-                    if self.xy[1] == 1:
-                        if self.xy[1] - new_pos[1] == -2:
+                    if self.colour == "b":
+                        # if still on the first rank
+                        if self.xy[1] == 1:
+                            if self.xy[1] - new_pos[1] == -2:
+                                return True
+                        if self.xy[1] - new_pos[1] == -1:
                             return True
-                    if self.xy[1] - new_pos[1] == -1:
+                return False
+            case "r":
+                if self.piece == "r":   # rook
+                    if self.xy[0] == new_pos[0] or self.xy[1] == new_pos[1]:
                         return True
-
-            return False
-        if self.piece == "r":   # rook
-            if self.xy[0] == new_pos[0] or self.xy[1] == new_pos[1]:
-                return True
-            else:
-                return False
-        if self.piece == "b":   # bishop
-            if self.xy[0] == new_pos[0] or self.xy[1] == new_pos[1]:
-                return False
-            if abs(slope(self.xy, new_pos)) == 1.0:
-                return True
-            else:
-                return False
-        if self.piece == "n":   # knight
-            if round(dist(self.xy, new_pos), 1) == 2.2:
-                return True
-            else:
-                return False
-        if self.piece == "k":   # king
-            if round(dist(self.xy, new_pos), 1) == 1.4 or round(dist(self.xy, new_pos), 1) == 1.0:
-                return True
-            else:
-                return False
-        if self.piece == "q":   # queen
-            if self.xy[0] == new_pos[0] or self.xy[1] == new_pos[1]:
-                return True
-            elif abs(slope(self.xy, new_pos)) == 1.0:
-                return True
-            else:
-                return False
-        pass
+                    else:
+                        return False
+            case "b":
+                if self.xy[0] == new_pos[0] or self.xy[1] == new_pos[1]:
+                    return False
+                if abs(slope(self.xy, new_pos)) == 1.0:
+                    return True
+                else:
+                    return False
+            case "n":
+                if round(dist(self.xy, new_pos), 1) == 2.2:
+                    return True
+                else:
+                    return False
+            case "k":
+                if round(dist(self.xy, new_pos), 1) == 1.4 or round(dist(self.xy, new_pos), 1) == 1.0:
+                    return True
+                elif round(dist(self.xy, new_pos), 1) == 2.0:
+                    # castling
+                    # if king has ever moved, then do not castle
+                    if self.moved == True:
+                        return False
+                    # find appropiate rook, see if it has moved
+                    for piece in self.board.turn:
+                        # if it isnt a rook, skip
+                        if not piece.piece == "r":
+                            continue
+                        # if it has moved, skip
+                        if piece.moved == True:
+                            continue
+                        # if it is not in range, skip
+                        if not round(dist(piece.xy, new_pos), 1) <= 2.0:
+                            continue
+                        if piece.xy[0] == 0:
+                            piece.xy = (3, piece.xy[1])
+                            piece.rect.x = piece.xy[0]*100
+                        elif piece.xy[0] == 7:
+                            piece.xy = (5, piece.xy[1])
+                            piece.rect.x = piece.xy[0]*100
+                        self.board.just_castled = True
+                        return True
+                else:
+                    return False
+            case "q":
+                if self.xy[0] == new_pos[0] or self.xy[1] == new_pos[1]:
+                    return True
+                elif abs(slope(self.xy, new_pos)) == 1.0:
+                    return True
+                else:
+                    return False
+        return
 
     def promote(self):
         if self.piece == "p":
@@ -239,6 +266,8 @@ class Board():
         
         self.turn = self.white
         self.winner = None # Set to "Black" or "White" depending winner, set None if undecided
+        
+        self.just_castled = False
 
 
     def draw(self):
@@ -323,6 +352,14 @@ class Board():
         # move_set entry: (turn_duration, color, piece, start_pos, end_pos)
         if color and piece and start_pos and end_pos:
             self.move_set.append((self.dt, color, piece, start_pos, end_pos))
+        
+        if self.just_castled:
+            if piece == "k":
+                if end_pos[0] == 2:
+                    self.move_set.append((0.0, color, "r", (0, start_pos[1]), (3, end_pos[1])))
+                if end_pos[0] == 6:
+                    self.move_set.append((0.0, color, "r", (7, start_pos[1]), (5, end_pos[1])))
+
         self.moves += 1
         if self.turn is self.white:
             self.turn = self.black
