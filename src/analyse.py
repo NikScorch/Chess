@@ -46,9 +46,17 @@ def heat_map(board_data, file):
     font = pygame.font.SysFont("FreeSans", 15, bold=True)
     map = pygame.Surface((800, 800))
     box_width = 100
+
+    # get largest possible number, returns [(coord, val)], divid into 255 to get color increment value
+    # this normalises the color in the heat maps, the most common value will always be RGB(255, 0, 0)
+    increment = 255 / get_largest(board_data, 1)[0][1]
+
+    # heat map
     for i in range(8):
         for j in range(8):
-            pygame.draw.rect(map, (10*board_data[(j, i)], 0, 0), (j*box_width,i*box_width,box_width,box_width))
+            # do not render a color greater than 255 (not possible), increase by increment values for each squares visit value
+            pygame.draw.rect(map, (min(255, increment*board_data[(j, i)]), 0, 0), (j*box_width,i*box_width,box_width,box_width))
+    # edge engravings
     for engraving in range(8):
             # render numbers first
             engrave = font.render(str(8-engraving), False, (255, 255, 255))
@@ -120,6 +128,10 @@ def main():
     board = stack_moves_file(board, "saves/game3.chess")
     board = stack_moves_file(board, "saves/game4.chess")
     heat_map(board, "stats/avg.png")
+
+    pgn = make_board()
+    pgn = stack_moves_file(pgn, "pgn/1.chess")
+    heat_map(pgn, "pgn/1.png")
 
 if __name__ == "__main__":
     main()
