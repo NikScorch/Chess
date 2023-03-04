@@ -42,11 +42,22 @@ def stack_moves_file(base, file):
 def heat_map(board_data, file):
     # "file" is save dir
     # assume chess board diction as input
+    pygame.font.init()
+    font = pygame.font.SysFont("FreeSans", 15, bold=True)
     map = pygame.Surface((800, 800))
     box_width = 100
     for i in range(8):
         for j in range(8):
             pygame.draw.rect(map, (10*board_data[(j, i)], 0, 0), (j*box_width,i*box_width,box_width,box_width))
+    for engraving in range(8):
+            # render numbers first
+            engrave = font.render(str(8-engraving), False, (255, 255, 255))
+            map.blit(engrave, (5,100*engraving +5))
+    convert_table = ["A", "B", "C", "D", "E", "F", "G", "H"]
+    for engraving in range(8):
+        # render letters second
+        engrave = font.render(str(convert_table[engraving]), False, (255, 255, 255))
+        map.blit(engrave, (100*engraving +85, 780))
     pygame.image.save(map, file)
 def heat_map_file(file, save):
     # "file" is open dir
@@ -61,13 +72,6 @@ def heat_map_file(file, save):
     squares = stack_moves(squares, data[3])
 
     heat_map(squares, save)
-
-    #screen = pygame.Surface((800, 800))
-    #box_width = 100
-    #for i in range(8):
-    #    for j in range(8):
-    #        pygame.draw.rect(screen, (10*squares[(j, i)], 0, 0), (j*box_width,i*box_width,box_width,box_width))
-    #pygame.image.save(screen, "stats/{}-heatmap.png".format(file.replace("/","_")))
 
 def make_board():
     squares = {}
