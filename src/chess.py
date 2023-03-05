@@ -173,6 +173,11 @@ class ChessPiece(pygame.sprite.Sprite):
         match self.piece:
             case "p":
                 if round(dist(self.xy, new_pos), 1) in (1.4,1.0,2.0):
+                    if abs(self.xy[0] - new_pos[0]) == 1:
+                        for piece in self.board.pieces:
+                            if piece.xy == new_pos:
+                                return True
+                        return False
                     if self.colour == "w":
                         # if still on the first rank
                         if self.xy[1] == 6:
@@ -448,7 +453,30 @@ class Board():
         
         # load move history
         self.move_set = data[3]
-
+    
+    def get_valid_moves(self, piece_set):
+        # (from, to)
+        valid_moves = []
+        for piece in piece_set:
+            for x in range(8):
+                for y in range(8):
+                    if piece.check_position((x, y)):
+                        valid_moves.append((piece.xy, (x, y)))
+        return valid_moves
+        
+    def move_random_piece(self):
+        moves = self.get_valid_moves(self.turn)
+        move = moves[randint(0, len(moves)-1)]
+        print(moves)
+        print(move)
+        for piece in self.turn:
+            if piece.xy == (-1, -1):
+                continue
+            if move[0] == piece.xy:
+                piece.rect.x = move[1][0]*100
+                piece.rect.y = move[1][1]*100
+                piece.aggression = True
+                break
 
 
 def main():
@@ -496,9 +524,11 @@ def main():
                     board.load_game()
                 if event.key == pygame.K_r:
                     board.default_game()
+                if event.key == pygame.K_c:
+                    board.move_random_piece()
 
 
-
+                    
         # Logical Updates
         #allsprites.update()
         board.whitesprites.update()
