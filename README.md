@@ -2,22 +2,29 @@
 ## Project For Computer Science Leaving Cert 2023
 
 ## TODO
-* Castling
-* Option promote pawn to a chosen piece
+* ✅ ~~Castling~~
+* Single player mode (chess bot)
+* Online play
+* Replay files of past games/game replayer
+* Dual board play
 * Save game to chosen file
 * Load game from chosen file
 * File asscociations for .CHESS files
-* Replay files of past games/game replayer
-* Single player mode (chess bot)
-* Online play
-* Dual board play
+* Option promote pawn to a chosen piece
 
 ## Features
+* Offline Play
+* Full chess set
+* Save game by pressing **S**
+* Reload last save by pressing **A**
+* Reset the the board by pressing **R**
 
 ## Installation
-Run ```git clone https://github.com/NikScorch/Chess.git``` to copy the source code to your local enviornment
 
-Python 3.10 or higher is required, it can be download from [python.org](https://www.python.org/downloads/)
+**If you are running a compiled build you do NOT need to do this.**
 
-The **pip** package manager can install all the dependencies for the project. It is packaged with python on windows but may need to installed through your system package manager on linux. To install the projects dependencies, run ```pip -r requirements.txt```
-```python3 src/__main__.py```
+1) Run ```git clone https://github.com/NikScorch/Chess.git```
+2) Install [Python 3.10](https://www.python.org/)
+2) (Optional) Set up a [python virtual environment](https://docs.python.org/3/tutorial/venv.html) so you don't run into issues with dependency conflicts. 
+3) run `python -m pip -r requirements.txt` to install the library and all its dependencies.
+4) run `python -m src` to run the program
