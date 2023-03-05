@@ -129,9 +129,13 @@ def main():
     board = stack_moves_file(board, "saves/game4.chess")
     heat_map(board, "stats/avg.png")
 
-    pgn = make_board()
-    pgn = stack_moves_file(pgn, "pgn/1.chess")
-    heat_map(pgn, "pgn/1.png")
-
+def main_pgn(dir):
+    all_pgn = make_board()
+    for i in range(1, 51):
+        heat_map_file("{}/{}.chess".format(dir, i), "{}/{}.png".format(dir, i))
+        all_pgn = stack_moves_file(all_pgn, "{}/{}.chess".format(dir, i))
+    heat_map(all_pgn, "{}/avg.png".format(dir))
+    
 if __name__ == "__main__":
     main()
+    main_pgn("pgn")
