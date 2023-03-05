@@ -18,11 +18,16 @@
 .text {
     color: var(--foreground);
 }
+p {
+    color: var(--foreground);
+}
 
 body {
     background-image: var(--wallpaper);
     background-color: var(--background);
     background-blend-mode: color-dodge;
+    background-attachment: fixed;
+    background-size: cover;
     font-family: "Open Sans";
 }
 
@@ -31,6 +36,13 @@ h1 {
 }
 h2 {
     color: var(--color14);
+}
+h3 {
+    color: var(--color13);
+    font-size: 0.90em;
+}
+h4 {
+    color: var(--color12);
 }
 
 
