@@ -1,0 +1,14 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2023.01.16"]
+[Round "-"]
+[White "frederikjoe1"]
+[Black "NikScorch"]
+[Result "1-0"]
+[WhiteElo "260"]
+[BlackElo "201"]
+[TimeControl "60"]
+[EndTime "4:34:25 PST"]
+[Termination "frederikjoe1 won by checkmate"]
+
+1. e4 Nc6 2. Bc4 Nf6 3. Qh5 e5 4. Qxf7# 1-0

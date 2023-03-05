@@ -1,0 +1,15 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2023.01.18"]
+[Round "-"]
+[White "NikScorch"]
+[Black "Hamina997"]
+[Result "1-0"]
+[WhiteElo "709"]
+[BlackElo "654"]
+[TimeControl "600"]
+[EndTime "15:36:07 PST"]
+[Termination "NikScorch won by resignation"]
+
+1. e4 e5 2. Nc3 Nf6 3. Nf3 Bb4 4. d4 exd4 5. Nxd4 c5 6. a3 cxd4 7. Qxd4 Bxc3+ 8.
+Qxc3 Nxe4 9. Qxg7 Qa5+ 10. b4 Qxb4+ 1-0

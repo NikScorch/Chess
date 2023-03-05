@@ -1,0 +1,17 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2023.01.17"]
+[Round "-"]
+[White "THEDONOFFICIAL"]
+[Black "NikScorch"]
+[Result "0-1"]
+[WhiteElo "248"]
+[BlackElo "299"]
+[TimeControl "300"]
+[EndTime "11:07:25 PST"]
+[Termination "NikScorch won by checkmate"]
+
+1. e4 Nc6 2. f4 e5 3. g3 exf4 4. gxf4 d6 5. Bg2 Qh4+ 6. Kf1 Bg4 7. Bf3 Bh3+ 8.
+Ke2 Nd4+ 9. Ke3 c5 10. c3 Ne6 11. Qa4+ Ke7 12. d3 Qxf4+ 13. Kf2 Qh4+ 14. Ke2
+Nf4+ 15. Ke3 Ng2+ 16. Bxg2 Bxg2 17. Ke2 Bxh1 18. Nf3 Qg4 19. Qb5 Qxf3+ 20. Kd2
+Qf2+ 21. Kd1 Bf3# 0-1

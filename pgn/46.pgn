@@ -1,0 +1,18 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2023.02.03"]
+[Round "-"]
+[White "NikScorch"]
+[Black "smolCobra"]
+[Result "0-1"]
+[WhiteElo "281"]
+[BlackElo "217"]
+[TimeControl "300"]
+[EndTime "4:04:27 PST"]
+[Termination "smolCobra won on time"]
+
+1. e3 e5 2. d4 e4 3. Nc3 Nc6 4. Nxe4 Nf6 5. Nc5 d6 6. Na4 b5 7. Bxb5 Rb8 8.
+Bxc6+ Ke7 9. Nf3 Rb5 10. Bxb5 c6 11. Bxc6 Qc7 12. d5 Nxd5 13. Bxd5 Qd7 14. e4
+Qg4 15. h3 Qxg2 16. Rg1 Qxg1+ 17. Nxg1 Bxh3 18. Nxh3 h5 19. e5 Rh6 20. Ng5 Rg6
+21. Bxf7 Rxg5 22. f4 Rg1+ 23. Ke2 Rxd1 24. Kxd1 Kxf7 25. Be3 dxe5 26. fxe5 a6
+27. Kd2 h4 28. Rf1+ Kg6 0-1

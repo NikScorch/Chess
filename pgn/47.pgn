@@ -1,0 +1,16 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2023.02.16"]
+[Round "-"]
+[White "NikScorch"]
+[Black "anestispoules"]
+[Result "0-1"]
+[WhiteElo "174"]
+[BlackElo "189"]
+[TimeControl "60"]
+[EndTime "2:19:10 PST"]
+[Termination "anestispoules won on time"]
+
+1. e4 e5 2. Nf3 Bc5 3. d4 exd4 4. Nxd4 Bxd4 5. Qxd4 Qg5 6. Bxg5 h6 7. Bb5 hxg5
+8. e5 Ne7 9. f4 O-O 10. fxg5 g6 11. e6 c6 12. Bd3 fxe6 13. Rf1 b6 14. Qf6 Rxf6
+15. Rxf6 Kh7 16. Bxg6+ Kg7 17. Rf7+ Kxg6 18. Rf6+ Kxg5 0-1

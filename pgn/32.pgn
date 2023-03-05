@@ -1,0 +1,17 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2023.01.18"]
+[Round "-"]
+[White "NikScorch"]
+[Black "Arnoddur"]
+[Result "0-1"]
+[WhiteElo "293"]
+[BlackElo "362"]
+[TimeControl "180+2"]
+[EndTime "9:25:10 PST"]
+[Termination "Arnoddur won on time"]
+
+1. Nc3 d5 2. d4 e5 3. dxe5 d4 4. Nb5 Nc6 5. e3 Bb4+ 6. c3 Qe7 7. Nf3 dxe3 8.
+fxe3 Ba5 9. b4 Bb6 10. Nfd4 Qxe5 11. Qe2 Nf6 12. c4 Nxd4 13. exd4 Qxe2+ 14. Bxe2
+Ne4 15. c5 Bxc5 16. Nxc7+ Ke7 17. Nxa8 Bxb4+ 18. Kd1 Rd8 19. Bb2 Bd2 20. Ba3+
+Kf6 0-1

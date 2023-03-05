@@ -1,0 +1,16 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2023.01.16"]
+[Round "-"]
+[White "NikScorch"]
+[Black "BortnikY"]
+[Result "0-1"]
+[WhiteElo "175"]
+[BlackElo "184"]
+[TimeControl "60"]
+[EndTime "4:40:54 PST"]
+[Termination "BortnikY won on time"]
+
+1. Nc3 e5 2. Nf3 Bc5 3. e4 d5 4. Nxe5 Nf6 5. Nxd5 Nxd5 6. exd5 Bxf2+ 7. Kxf2
+Qxd5 8. d4 f6 9. c4 Qa5 10. Bf4 c5 11. Nd3 Bd7 12. dxc5 Qa4 13. b3 Qc6 14. Qf3
+Qe6 15. Qd5 O-O 16. Qxe6+ Bxe6 17. Re1 Bxc4 0-1

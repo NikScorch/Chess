@@ -1,0 +1,21 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2023.02.03"]
+[Round "-"]
+[White "NikScorch"]
+[Black "ChihayaFPS"]
+[Result "1-0"]
+[WhiteElo "290"]
+[BlackElo "238"]
+[TimeControl "300"]
+[EndTime "2:36:48 PST"]
+[Termination "NikScorch won by checkmate"]
+
+1. e4 e5 2. Nf3 d5 3. exd5 Ne7 4. Nc3 c6 5. Nxe5 cxd5 6. Qf3 f6 7. Nd3 h5 8.
+Nxd5 Bg4 9. Qf4 g5 10. Qe4 Nd7 11. Be2 Ne5 12. Nxe5 fxe5 13. Bxg4 hxg4 14. Qxe5
+Qxd5 15. Qxh8 O-O-O 16. d3 a6 17. c4 Qxg2 18. Rf1 Ng6 19. Bxg5 Nxh8 20. Bxd8
+Kxd8 21. O-O-O Qxh2 22. c5 Qc7 23. d4 b6 24. f3 bxc5 25. dxc5+ Bd6 26. b4 a5 27.
+a3 axb4 28. axb4 Kc8 29. Rxd6 Nf7 30. Rf6 Ne5 31. fxg4 Nxg4 32. Rf8+ Kd7 33.
+R1f7+ Kc6 34. Rxc7+ Kxc7 35. Rf4 Ne5 36. Kc2 Nc6 37. b5 Na5 38. Rf7+ Kc8 39. b6
+Nc6 40. Kc3 Ne5 41. Rc7+ Kb8 42. Rh7 Nc6 43. b7 Na5 44. Kb4 Nxb7 45. c6 Nd6 46.
+c7+ Kc8 47. Kc5 Ne8 48. Kc6 Nf6 49. Rh8+ Ne8 50. Rxe8# 1-0

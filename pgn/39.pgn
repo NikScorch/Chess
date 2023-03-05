@@ -1,0 +1,18 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2023.01.20"]
+[Round "-"]
+[White "NikScorch"]
+[Black "Ahmadsh1989"]
+[Result "0-1"]
+[WhiteElo "678"]
+[BlackElo "674"]
+[TimeControl "600"]
+[EndTime "4:22:47 PST"]
+[Termination "Ahmadsh1989 won by checkmate"]
+
+1. e4 e5 2. Nc3 c5 3. Nf3 d6 4. Bc4 a6 5. a3 b5 6. b4 cxb4 7. axb4 bxc4 8. b5 f5
+9. bxa6 Nxa6 10. exf5 Bxf5 11. O-O h6 12. d3 cxd3 13. cxd3 Be7 14. d4 exd4 15.
+Nxd4 Bh7 16. Nc6 Qd7 17. Nxe7 Nxe7 18. Nd5 Nxd5 19. Qxd5 Bg8 20. Qxa8+ Kf7 21.
+Qxa6 Bh7 22. Ba3 Re8 23. Qxd6 Qb5 24. Qf4+ Kg8 25. Rfb1 Bxb1 26. Rxb1 Qxb1+ 27.
+Bc1 Re1# 0-1

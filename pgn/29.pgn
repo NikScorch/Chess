@@ -1,0 +1,19 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2023.01.18"]
+[Round "-"]
+[White "treefish3"]
+[Black "NikScorch"]
+[Result "0-1"]
+[WhiteElo "232"]
+[BlackElo "175"]
+[TimeControl "120+1"]
+[EndTime "3:29:13 PST"]
+[Termination "NikScorch won on time"]
+
+1. e4 Nc6 2. c4 Nf6 3. d3 e5 4. Nf3 d6 5. Qa4 Bg4 6. h3 Bxf3 7. gxf3 h6 8. Nc3
+d5 9. Nxd5 Nxd5 10. exd5 Bb4+ 11. Bd2 Bxd2+ 12. Kxd2 Qg5+ 13. Kc3 O-O-O 14. dxc6
+bxc6 15. Qxc6 Rhe8 16. d4 exd4+ 17. Kd3 Qg6+ 18. Qxg6 fxg6 19. Rg1 c5 20. Rxg6
+Rd5 21. Rxg7 Kd8 22. Rd1 Rd7 23. Rxd7+ Kxd7 24. Bg2 Ke6 25. f4 Ke7 26. Bc6 Kf7
+27. Bxe8+ Kf6 28. Re1 Kf5 29. Re6 Kxf4 30. Bg6 Kf3 31. Re4 Kxf2 32. Bf5 Kg3 33.
+Bg4 Kf2 0-1

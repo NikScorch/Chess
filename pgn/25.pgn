@@ -1,0 +1,15 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2023.01.17"]
+[Round "-"]
+[White "wZ1A"]
+[Black "NikScorch"]
+[Result "1-0"]
+[WhiteElo "742"]
+[BlackElo "700"]
+[TimeControl "600"]
+[EndTime "9:33:01 PST"]
+[Termination "wZ1A won by checkmate"]
+
+1. e4 Nc6 2. d4 d5 3. exd5 Qxd5 4. Nc3 Qe6+ 5. Nge2 Qc4 6. d5 Bg4 7. dxc6 Bxe2
+8. Bxe2 Qxc6 9. Bb5 Qxb5 10. Nxb5 c6 11. Nc7# 1-0

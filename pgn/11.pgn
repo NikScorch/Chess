@@ -1,0 +1,16 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2023.01.16"]
+[Round "-"]
+[White "NikScorch"]
+[Black "HMNINC"]
+[Result "0-1"]
+[WhiteElo "192"]
+[BlackElo "177"]
+[TimeControl "60"]
+[EndTime "4:36:45 PST"]
+[Termination "HMNINC won on time"]
+
+1. Nc3 d5 2. Nf3 f6 3. d4 Nc6 4. e4 dxe4 5. Nxe4 f5 6. Bb5 a6 7. Bxc6+ bxc6 8.
+Nc3 Be6 9. d5 cxd5 10. Nd4 Qd6 11. Qh5+ g6 12. Qg5 Qe5+ 13. Nce2 Bh6 14. Qxh6
+Nxh6 15. f4 Qe4 16. Be3 Qxg2 17. O-O-O Qxe2 0-1

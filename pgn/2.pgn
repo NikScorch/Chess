@@ -1,0 +1,15 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2023.01.16"]
+[Round "-"]
+[White "NikScorch"]
+[Black "MrOmnipotentPotato"]
+[Result "0-1"]
+[WhiteElo "256"]
+[BlackElo "304"]
+[TimeControl "180"]
+[EndTime "2:27:16 PST"]
+[Termination "MrOmnipotentPotato won by resignation"]
+
+1. Nc3 e5 2. e4 Nc6 3. Nf3 Nf6 4. d4 d5 5. exd5 exd4 6. Qxd4 Nxd4 7. Nxd4 Nxd5
+8. Bg5 Qxg5 0-1

@@ -1,0 +1,17 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2023.01.26"]
+[Round "-"]
+[White "LeIouch_Britannia"]
+[Black "NikScorch"]
+[Result "1-0"]
+[WhiteElo "315"]
+[BlackElo "283"]
+[TimeControl "180+2"]
+[EndTime "7:07:35 PST"]
+[Termination "LeIouch_Britannia won by resignation"]
+
+1. d4 e5 2. dxe5 Bc5 3. Nf3 d6 4. Bf4 Bg4 5. h3 Bxf3 6. exf3 Nd7 7. exd6 cxd6 8.
+Bxd6 Bxd6 9. Qxd6 Qa5+ 10. c3 Qe5+ 11. Qxe5+ Nxe5 12. Be2 Rd8 13. O-O Nf6 14. b4
+O-O 15. c4 a6 16. a3 Rd4 17. c5 Nc4 18. Nd2 Nxd2 19. Rfd1 Nxf3+ 20. Bxf3 Rxd1+
+21. Rxd1 1-0

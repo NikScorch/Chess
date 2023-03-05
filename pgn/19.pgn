@@ -1,0 +1,16 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2023.01.17"]
+[Round "-"]
+[White "NikScorch"]
+[Black "musuvadl"]
+[Result "0-1"]
+[WhiteElo "166"]
+[BlackElo "151"]
+[TimeControl "60"]
+[EndTime "1:15:57 PST"]
+[Termination "musuvadl won on time"]
+
+1. Nc3 Nf6 2. d4 e6 3. Nf3 Be7 4. e4 O-O 5. d5 exd5 6. Nxd5 Nxe4 7. Nf4 Bd6 8.
+Bd3 Nc5 9. Be3 Nxd3+ 10. Qxd3 Re8 11. O-O-O Nc6 12. Bd4 Nb4 13. Qb3 Nc6 14. Nd2
+Nxd4 15. Qh3 Ne6 16. Nxe6 dxe6 0-1
