@@ -148,8 +148,23 @@ class ChessPiece(pygame.sprite.Sprite):
                 self.aggression = False
             
     def check_position(self, new_pos):
+        def is_between(a,b,c):
+            if a == c or b == c:
+                return False
+            return dist(a,c) + dist(b,c) == dist(a,b)
+
         if self.xy == new_pos:
             return False
+        # check all of players own pieces, if moving into own piece, dont
+        for piece in self.board.turn:
+            if piece.xy == new_pos:
+                return False
+        # Check if a piece is inbetween start_pos and dest.
+        # Because of a knights short path, a piece would need 
+        #   a decimal x,y value to be inbetween its start and dest.
+        for piece in self.board.pieces:
+            if is_between(self.xy, new_pos, piece.xy):
+                return False
 
         match self.piece:
             case "p":
