@@ -151,7 +151,8 @@ class ChessPiece(pygame.sprite.Sprite):
         def is_between(a,b,c):
             if a == c or b == c:
                 return False
-            return dist(a,c) + dist(b,c) == dist(a,b)
+            # round to avoid extremely small differences in numbers
+            return round(dist(a,c) + dist(b,c),2) == round(dist(a,b),2)
 
         if self.xy == new_pos:
             return False
@@ -162,6 +163,9 @@ class ChessPiece(pygame.sprite.Sprite):
         # Check if a piece is inbetween start_pos and dest.
         # Because of a knights short path, a piece would need 
         #   a decimal x,y value to be inbetween its start and dest.
+        # the knight abides by this because no piece can have a 
+        #   coord with whole numbers in the (+1, +2) L shape the
+        #   knight uses. Ie. (+0.5, +1.5)
         for piece in self.board.pieces:
             if is_between(self.xy, new_pos, piece.xy):
                 return False
