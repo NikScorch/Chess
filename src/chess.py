@@ -230,6 +230,10 @@ class ChessPiece(pygame.sprite.Sprite):
                         # if it is not in range, skip
                         if not round(dist(piece.xy, new_pos), 1) <= 2.0:
                             continue
+                        # if another piece inbetween king and rook, skip
+                        for obstacle in self.board.pieces:
+                            if is_between(self.xy, piece.xy, obstacle.xy):
+                                return False
                         if piece.xy[0] == 0:
                             piece.xy = (3, piece.xy[1])
                             piece.rect.x = piece.xy[0]*100
@@ -463,12 +467,10 @@ class Board():
                     if piece.check_position((x, y)):
                         valid_moves.append((piece.xy, (x, y)))
         return valid_moves
-        
+
     def move_random_piece(self):
         moves = self.get_valid_moves(self.turn)
         move = moves[randint(0, len(moves)-1)]
-        print(moves)
-        print(move)
         for piece in self.turn:
             if piece.xy == (-1, -1):
                 continue
