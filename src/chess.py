@@ -173,23 +173,31 @@ class ChessPiece(pygame.sprite.Sprite):
         match self.piece:
             case "p":
                 if round(dist(self.xy, new_pos), 1) in (1.4,1.0,2.0):
-                    if abs(self.xy[0] - new_pos[0]) == 1:
+                    # diagonal takes only if piece present
+                    if abs(self.xy[0] - new_pos[0]) == 1 and abs(self.xy[1] - new_pos[1]) == 1:
                         for piece in self.board.pieces:
                             if piece.xy == new_pos:
                                 return True
                         return False
+                    # disallow direct takes
+                    for piece in self.board.pieces:
+                        if piece.xy == new_pos:
+                            return False
+
                     if self.colour == "w":
-                        # if still on the first rank
+                        # if still on the first rank, move twice
                         if self.xy[1] == 6:
                             if self.xy[1] - new_pos[1] == 2:
                                 return True
+                        # always allow move 1
                         if self.xy[1] - new_pos[1] == 1:
                             return True
                     if self.colour == "b":
-                        # if still on the first rank
+                        # if still on the first rank, move twice
                         if self.xy[1] == 1:
                             if self.xy[1] - new_pos[1] == -2:
                                 return True
+                        # always allow move 1
                         if self.xy[1] - new_pos[1] == -1:
                             return True
                 return False
