@@ -129,6 +129,9 @@ def main():
     board = stack_moves_file(board, "saves/game4.chess")
     heat_map(board, "stats/avg.png")
 
+    analyse("game.chess")
+    heat_map_file("game.chess", "stats/game.png")
+
 def main_pgn(dir):
     all_pgn = make_board()
     for i in range(1, 51):
