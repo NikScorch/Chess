@@ -1,6 +1,7 @@
 .container{
     width: 40%;
     max-width: 1000px;
+    min-width: 700px;
     margin: 0 auto;
 }
 
@@ -8,6 +9,7 @@
     width: 80%;
     max-width: 1000px;
     margin: 0 auto;
+    overflow: hidden
 }
 
 .chesspiece {
@@ -39,7 +41,7 @@ h2 {
 }
 h3 {
     color: var(--color13);
-    font-size: 0.90em;
+    font-size: 0.70em;
 }
 h4 {
     color: var(--color12);
