@@ -488,7 +488,6 @@ class Board():
                 piece.aggression = True
                 break
 
-
 def main():
     pygame.init()
 
@@ -499,6 +498,9 @@ def main():
 
     board = Board(screen)
     board.default_game()
+
+    ai_game = False
+    ai_oppenent = False
 
     while True:
         # Player Inputs
@@ -536,11 +538,18 @@ def main():
                     board.default_game()
                 if event.key == pygame.K_c:
                     board.move_random_piece()
-
+                if event.key == pygame.K_1:
+                    ai_oppenent = not ai_oppenent
+                if event.key == pygame.K_2:
+                    ai_game = not ai_game
 
                     
         # Logical Updates
         #allsprites.update()
+        if ai_game:
+            board.move_random_piece()
+        elif ai_oppenent and board.turn == board.black:
+            board.move_random_piece()
         board.whitesprites.update()
         board.blacksprites.update()
         
