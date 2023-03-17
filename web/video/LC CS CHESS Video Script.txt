@@ -1,0 +1,114 @@
+SCRIPT
+
+Welcome to my leaving cert computer science project for 2023
+This project models chess in python
+I am using the external library "PyGame" to provide a graphical interface
+I am basing this game of the Sanskrit version of chess (from 500-700 AD) which did not have check or checkmate. the king could be taken like a normal piece, this would end the game
+
+** launch game **
+this is the game
+we have a checkerboard and all the standard pieces set in their starting positions
+
+the game has a few core components
+firstly it has a turn based system
+right now its whites go, currently the game will only let me pick up white pieces. if i try and move a black piece: absolutely nothing will happen
+
+Once i set down a white piece, the reverse is true, now i can only move black pieces
+If i set down a in the same spot, then i still have an oppurtunity to move another piece
+
+in this position, white can take the black pawn by setting their piece on top of blacks. Similary, black can take whites pawn with their queen
+
+both pawns have been completely removed off the board and cannot be put back
+
+all of these pieces are requried to move correctly
+
+a pawn can only move forward. but it cannot take a piece by doing so.
+a pawn can take diagonally, this is the only way a pawn can move like this
+
+similary, the only piece on the board which can jump over other pieces is the Knight
+trying to move a piece past another will result in it snapping back to their its position 
+
+given a king and a rook have not moved, and there is nothing inbetween them, they can castle 
+the king can castle, given that both the king has not moved and the rook you are castling with hasnt moved either
+
+if a pawn is able to get to the end of the board, it immediately promotes to a queen
+
+the game implements save states
+by pressing the letter S on your keyboard you will save the game
+you can the close the game and relaunch it
+to regain your previous session, you just have to press A on the keyboard
+
+additionally, if you ever want to reset the board, just press R on your keyboard and all the pieces will move back to their default position
+
+with this system you can start a game. save it, and reset the board to quickly try out a different tactic. then you can return your previous game by hitting A
+
+the game also has a single player mode 
+by hitting 1 on your keyboard, you enter single player mode
+black is now being played by the computer
+now, whenever you make a move, black will make a move immediately after
+
+the game can also run in a simulation mode where both black and white are played by a bot
+this can be enabled by pressing 2 on your keyboard
+
+the data this generates can be used for analysis later on
+
+
+lets look at the code
+
+to abstract the problem, i divided the game into two dominant classes
+the chesspiece class and the board class
+because of this the main function can be relatively simple and is easier to follow
+leaving most of the complexities of chess to other processes, such as promotion, castling, taking of pieces, etc
+
+the chesspiece class extends pygames sprite class. the sprite class integrates our object into pygames render engine
+chesspiece has an update function and check_position function. these work in tandem to make sure a move is valid. 
+it can also check if a pawn needs to promote to a queen and can remove pieces off the board
+
+the board class houses multiple chesspiece objects and keeps track of move data 
+it sets up the board, keeps track of whose turn it is and renders the board to the screen
+
+the main function of the program is relatively simple as most of the code is in the board and chesspiece classes
+first we initize the window and create a board
+
+first we start an event loop
+then process player input
+after that we call the update function on all loaded sprites
+this includes the black and white pieces
+additionally we check if a piece should be moved by a bot
+
+we also check if we need to declare a victor
+
+we then draw a the board and all of chess piece sprites
+additionally if a winner has been decided we display relavant text on screen
+
+the board class has a save_game and load_game function
+these functions convert the current state of the board and the move history of the game into a json file that can be loaded later
+the turn_end function adds a log to the move history about who moved which piece and where it moved
+
+the chesspiece has a special function called check_position
+this function takes a position on the board as an argument
+it takes into account whether a players piece is already in the new position,
+if a piece is obstructing the path to this position
+and whether or not the piece move there anyway given its movement restricitons, ie, rooks moving up and across and bishops moving diagonally
+it also process whether or not a king and rook pair can castle with each other 
+
+the game saves to a game.chess file. this is a json file with nested lists. 
+these lists contain the position of pieces on the board,
+which pieces have been taken
+whose turn it is
+and a history of every move that has been made so far
+
+
+
+to obtain a large dataset for analysis, i downloaded my chess.com game history and wrote a conversion program to convert their .pgn files to my .chess json files.
+i then wanted to generate a heat map of the most commonly visisted squares across a number of games
+i created another small analyse.py file to do this
+this represents data across 50 different games. you can see the centre squares are brightest sand therefore the most commonly visited squares
+
+
+
+unfortunately i did not get implement everything i wanted to
+notably, checkmate is non-existant. this function proved to be extremely difficult to create and test properly as there were too many edge cases to consider
+additionally features such as online play, live replay of past games and exporting .chess files as .gifs didnt make the cut as i ran out of time
+
+overall im pleased with my project and i feel i learned a lot from it. thank you for listening

@@ -1,0 +1,64 @@
+=====================
+	VIDEO SCRIPT
+=====================
+CS LC CHESS PROJECT
+15/03/2023
+
+- Hello, this is my LC CS project
+
+What is the goal?
+-----------------
+- My project is based on chess from 700 AD
+
+OPEN GAME
+---------
+Show:
+* turn system
+* pieces locked directions
+* inabilty to jump over pieces
+* taking of pieces
+* promotion of pices
+* saving/loading games
+* single player toggle and full ai game
+
+OPEN CODE
+---------
+Show:
+* ChessPiece and ChessBoard Classes
+* Show main() function flow
+
+Explain:
+* How you "abstracted" the problem
+* ChessPiece.check_position()
+* How data is saved/loaded
+* How did you test it?
+	~ Show reversable functions
+	~ Problems you ran into/how you solved them
+
+ANALYSIS
+--------
+* What did you analyise?
+* What data did you use?
+* What steps were involved?
+
+What did you get done?
+----------------------
+* Turn system
+* Correct piece movement
+* Taking of pieces
+* Pawn promotion
+* Alternative icon set
+* Save/Load game
+* Automoves (bot game)
+* Game winning logic
+* Data analysis
+
+What did you not get done?
+--------------------------
+* Checkmate
+* Online play (currently local only)
+* Save File dialog (defaults to hardcoded file)
+* File asscociations for .CHESS files
+* Option to promote to Knight, Bishop and Rook
+* Live replay of past files
+* Export game files as gifs
