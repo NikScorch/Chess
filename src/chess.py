@@ -381,6 +381,7 @@ class Board():
         self.allsprites = pygame.sprite.RenderPlain(self.pieces)
         
         self.turn = self.white
+        self.winner = None # Set to "Black" or "White" depending winner, set None if undecided
     
     def turn_end(self, color=None, piece=None, start_pos=None, end_pos=None):
         self.dt = time() - self.time
