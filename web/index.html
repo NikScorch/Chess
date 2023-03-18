@@ -25,15 +25,6 @@
         <div class="container">
             <h1>Leaving Cert 2023 CS Project</h1>
             <h2>Python Chess Game</h2>
-            <p class="text">Hello World</p>
-            <p class="text">
-                Example Goals:
-                <ul style="list-style-type:disc;" class="text">
-                    <li>Render Board</li>
-                    <li>Make Chess Piece</li>
-                    <li>Win Games</li>
-                </ul>
-            </p>
             <div class="chesscontainer">
                 <img src="../src/pieces/cardinal_png/br.png" alt="" class="chesspiece">
                 <img src="../src/pieces/cardinal_png/bn.png" alt="" class="chesspiece">
@@ -86,9 +77,65 @@
                 meets each of the requirements. You will not be penalised marks for not including any text if your
                 video is sufficient in describing how you meet each of the requirements. 
             </h3>
-            <p>
-
+        </div>
+        <video width="100%" style="max-width: 1200px; display: block; margin: 0 auto;" controls>
+            <source src="video/chess project - FINAL.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="container">
+            <p class="text" style="font-weight: bold;">
+                Welcome to my leaving cert computer science project for 2023.
             </p>
+            <p class="text">
+                This project models chess in python. <br>
+                I am using the external library <a href="https://www.pygame.org">PyGame </a>to provide a graphical interface. <br>
+                I am basing this game of the Sanskrit version of chess (from 500-700 AD) which did not have check or checkmate. the king could be taken like a normal piece, this would end the game.
+            </p>
+            <p class="text">
+                There were a few core components I wanted to complete:
+                <ul class="text">
+                    <li>A turn based system</li>
+                    <li>Enforcing correct movement of pieces</li>
+                    <li>Pawn promotion</li>
+                    <li>Automatic movement of pieces</li>
+                    <li>Game save states</li>
+                </ul>
+            </p>
+            <p class="text">
+                Since chess is a complex game with many different pieces, I needed my project architechture to be flexible enough to process this.
+            <p class="text">
+                I decided to go for an object oriented approach to my design. Creating two major classes which everything works off.
+            </p>
+            <p class="text">
+                The "Board" and "ChessPiece" classes hold effectively all of the programs code. 
+            </p>
+            <p class="text">
+                The "ChessPiece" class assigns an object a colour value, piece value, position value and a couple status values for taking pieces. 
+            </p>
+            <p class="text">
+                Meanwhile, the "Board" class houses multiple "ChessPiece" objects. It handles setting up the board, deciding whose turn it is, logging move data for analysis, saving the game and loading the game. It can also move a piece for a player automatically. <br>
+            </p>
+            <p class="text">
+                By splitting the code into these two sections, we can many pieces on the board with relative ease.
+            </p>
+            <hr>
+            <p class="text">
+                The game can process both keyboard input, mouse input and touch input.
+            </p>
+            <p>
+                It has been designed to accept a mouse click anywhere within the window. The program is intelligent enough to be able to reject an input if it is invalid (ie. the user has not clicked on the ChessPiece, rather they clicked on empty space)
+            </p>
+            <p>
+                The same is true for keyboard input. The keyboard is not required to play the game, but it adds additional functionality that the user can take advantage of.
+            </p>
+            <p>
+                For example, saving the game, loading up a previous session, reseting the board and enabling single player mode. 
+            </p>
+            <p>
+                After completing the code for mouse input, I loaded the game onto another computer that had a touch screen. After a few adjustments to my code, the game is full compatible with touch devices. Granted some functionality would be lost on touch only devices as some functions are bound to the keyboard. But for those who struggle with coordinating movements with a mouse and prefer touch screen laptops, the game is designed to be inclusive to those users.
+            </p>
+
+
 
             <h2>investigation and plan</h2>
             <h3>
@@ -126,6 +173,7 @@
                 like a normal piece in ancient chess, check does not have to be called
             </p>
             
+
             <h2>Design</h2>
             <h3>
                 400 words
@@ -138,6 +186,7 @@
             <p>
                 <img src="diagrams/chess.py.svg" alt="Diagram" style="width: 100%;">
             </p>
+
 
             <h2>Implementation</h2>
             <h3>
@@ -153,6 +202,7 @@
             <p>
 
             </p>
+
 
             <h2>Testing</h2>
             <h3>
@@ -175,6 +225,7 @@
                 </ul>
             </p>
 
+
             <h2>Evaluation</h2>
             <h3>
                 350 words
@@ -187,6 +238,7 @@
             <p>
 
             </p>
+
 
             <h2>References</h2>
             <h3>
