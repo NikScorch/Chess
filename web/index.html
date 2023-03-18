@@ -12,6 +12,47 @@
     modelling (design) -- now be a nerd -- bring in the maths/code screenshots, the special bits
     (design) -- how will it be developed??
     (video?) - have a checklist that you can show what you got done and what didnt get done
+
+
+    * brief:
+                        mention the stats, (max, min, mode, mean, etc all basic mathsy o
+                        functoins.)
+                        "in addtion to the heat map {}" explain other stats, also what th 
+                        is the heat map?? show the function
+                        have a heading about advanded requirements:
+                            - screenshot of analysis functions
+                            - explain in english what it does (core concpet)
+                            - screenshot of an output
+    * investagtion and plan: talk about inspriation >> other graphical games or OOP projects. experience with  
+                        these titles/systems
+    talk about astraction, decomposition (breaking down a large task into a set of smaller tasks) (ie. the check_position function in detail), modelling (how did you implement a chess piece?)
+    * design; talk about absolutely required fuinctionality, i ethe calasses, the board, how it was rendered, 
+                        what do you want each pioece to do (you do not have to be nitty gritty ie the maths behind the movement (do that in the implementation)).
+                        approach to single player vs multiplayer, what needs to be changed for each
+                        do you need functions to save all this data as the game plays (CURRENT BOARD LAYOUT)
+                        how is all the current data/status of the pieces stored IN MEMORY
+                        decompostion, abstraction and modelling, talk about check_position
+    * implementation: OOP, another function in detail, explain a problem
+                        basically the diary of the project, defo reference your git logs
+                        i was working on this and finally got it working and then a example
+                        why did you store the position in the ChessPiece object rather than a global 2d array 
+                        with all positonal data of the pieces that they reference after the fact
+    * evaluation: did your design style OOP work? are there function s taht could be optimised under another 
+                        approach. when you abstraced the project was there another solution, is it clunky? can it 
+                        be neater? (be technical), maybe add a gui? would it have been practical to add for the 
+                        scope of this course and the time frame? 
+                        talk about why you have avoided checkmate? what was your original idea? why did it fail?
+                        talk about why you did a random move set rather than an ai
+                        could reference stockfish or other implementations
+                        functionality to move pieces by an external program is there but it is not intelligent
+
+    sys architechture diagram:
+        * inputs
+        * main processses
+        * where data is stored
+            - where that gets piped to be analysised
+            - what output does that produce - images/heatmaps
+        * where output goes
     -->
     <head>
         <link rel="stylesheet" href="styles.css">
@@ -24,6 +65,7 @@
     <body>
         <div class="container">
             <h1>Leaving Cert 2023 CS Project</h1>
+            <hr>
             <h2>Python Chess Game</h2>
             <div class="chesscontainer">
                 <img src="../src/pieces/cardinal_png/br.png" alt="" class="chesspiece">
@@ -64,6 +106,7 @@
             </div>
         </div>
         <div class="container">
+            <hr>
             <h2>Meeting the Brief</h2>
             <h3>
                 500 Words + Video
@@ -137,7 +180,11 @@
 
 
 
+            <hr>
             <h2>investigation and plan</h2>
+            <!-- add screenshots of other implementations of chess and what you took inspiration from 
+            waht did you want to achieve
+         -->
             <h3>
                 400 words
 
@@ -170,10 +217,11 @@
                 chess. This is because of the complexity of the algorithm. Considering the time allowed and how much 
                 work is need to get the rest of the game functioning, it would be too tedious to implement this function 
                 properly and test it to ensure it has no issues.  For that reason, we will allow the king to be taken 
-                like a normal piece in ancient chess, check does not have to be called
+                like a normal piece in ancient chess, check does not have to be called.
             </p>
             
 
+            <hr>
             <h2>Design</h2>
             <h3>
                 400 words
@@ -184,10 +232,27 @@
                 You should explain how modelling and abstraction will be applied to your project. 
             </h3>
             <p>
-                <img src="diagrams/chess.py.svg" alt="Diagram" style="width: 100%;">
+                As I've become more proficient with programming, I've began to appreciate the object oriented design principles more and more. Although I dont agree with everything about the design language, I feel an OOP approach to this project would be best.
+            </p>
+            <p>
+                I will design the program to follow Python3's module structure, this way it can easily packaged later on for distribution. 
+            </p>
+            <p>
+                The program will have two dominant classes, a ChessPiece class and a Board class. As mentioned ealier, ChessPiece will handle data on what type of piece an object is, who owns it and where it is. Similary, the Board class will handle whose turn it is, logging move data, and saving and loading games. 
+            </p>
+            <p>
+                Because of this design, the main function of the program can be much simplier and easier to read.
+            </p>
+            <p>
+                The general control flow of the program is illustrated below
+            </p>
+            <img src="diagrams/chess.py.svg" alt="Diagram" style="width: 100%;">
+            <p>
+                Since most of the complex processing is handled by ChessPiece and Board, the general logic of the program can be followed relatively easily. 
             </p>
 
 
+            <hr>
             <h2>Implementation</h2>
             <h3>
                 500 words
@@ -200,10 +265,14 @@
                 creating your project. 
             </h3>
             <p>
-
+                Git was used during the entire development of the project. This let me keep track of progress and rolled back the project to a previous state should something go catastrophically wrong.
+            </p>
+            <p>
+                
             </p>
 
 
+            <hr>
             <h2>Testing</h2>
             <h3>
                 350 words
@@ -226,6 +295,7 @@
             </p>
 
 
+            <hr>
             <h2>Evaluation</h2>
             <h3>
                 350 words
@@ -240,6 +310,7 @@
             </p>
 
 
+            <hr>
             <h2>References</h2>
             <h3>
                 You must reference any information used in your report or in the creation of your artefact, such
