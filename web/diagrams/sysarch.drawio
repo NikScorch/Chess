@@ -1,0 +1,169 @@
+<mxfile host="65bd71144e">
+    <diagram id="W3D8Fcc3bDT_5SvSfXBz" name="Page-1">
+        <mxGraphModel dx="898" dy="1144" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#FFFFFF" math="0" shadow="1">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Save File Database" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#434445;aspect=fixed;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.vvd.storage;" parent="1" vertex="1">
+                    <mxGeometry x="338.1" y="450" width="50" height="66.67" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#434445;aspect=fixed;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.vvd.mouse;" parent="1" vertex="1">
+                    <mxGeometry x="170.6" y="285" width="29.4" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#434445;aspect=fixed;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.vvd.keyboard;" parent="1" vertex="1">
+                    <mxGeometry x="80.6" y="285" width="84.51" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#434445;aspect=fixed;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.vvd.web_browser;" parent="1" vertex="1">
+                    <mxGeometry x="320.85" y="290" width="84.51" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="User Input" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=block;endFill=1;" parent="1" edge="1">
+                    <mxGeometry width="160" relative="1" as="geometry">
+                        <mxPoint x="210.6" y="320" as="sourcePoint"/>
+                        <mxPoint x="310.6" y="320" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="14" value="Save Game" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=block;endFill=1;" parent="1" edge="1">
+                    <mxGeometry x="-0.0005" y="-40" width="160" relative="1" as="geometry">
+                        <mxPoint x="360.6000000000001" y="360" as="sourcePoint"/>
+                        <mxPoint x="360.64000000000004" y="440" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="16" value="Load Game" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=block;endFill=1;" parent="1" edge="1">
+                    <mxGeometry y="-40" width="160" relative="1" as="geometry">
+                        <mxPoint x="370.6" y="440" as="sourcePoint"/>
+                        <mxPoint x="370.6" y="360" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="20" value="Application/Game" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="303.11" y="260" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#434445;aspect=fixed;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.vvd.phone;" parent="1" vertex="1">
+                    <mxGeometry x="40.599999999999994" y="295" width="29.5" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="Human Interface Devices" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="255" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="Save to DB" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=block;endFill=1;" parent="1" edge="1">
+                    <mxGeometry width="160" relative="1" as="geometry">
+                        <mxPoint x="510.6" y="480" as="sourcePoint"/>
+                        <mxPoint x="400.6" y="480" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="30" value="Convert File Format" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#434445;aspect=fixed;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.vvd.web_browser;" parent="1" vertex="1">
+                    <mxGeometry x="520.6" y="450" width="84.51" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="Load File&lt;br&gt;for Processing" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=block;endFill=1;" parent="1" edge="1">
+                    <mxGeometry x="0.6" y="-40" width="160" relative="1" as="geometry">
+                        <mxPoint x="560.6" y="390" as="sourcePoint"/>
+                        <mxPoint x="560.6" y="440" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="33" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#434445;aspect=fixed;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.vvd.on_demand_self_service;" parent="1" vertex="1">
+                    <mxGeometry x="527.5500000000001" y="170" width="70.59" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="Chess.com" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="522.85" y="140" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="Download&lt;br&gt;Game History" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=block;endFill=1;" parent="1" edge="1">
+                    <mxGeometry x="0.6" y="-40" width="160" relative="1" as="geometry">
+                        <mxPoint x="560" y="240" as="sourcePoint"/>
+                        <mxPoint x="560" y="280" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="37" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#434445;aspect=fixed;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.vvd.monitor;" parent="1" vertex="1">
+                    <mxGeometry x="320.09999999999997" y="120" width="86.02" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="Render &lt;br&gt;Game" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=block;endFill=1;" parent="1" edge="1">
+                    <mxGeometry x="-0.6" y="30" width="160" relative="1" as="geometry">
+                        <mxPoint x="370" y="260" as="sourcePoint"/>
+                        <mxPoint x="370" y="210" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="39" value="Load for Analysis" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=block;endFill=1;" parent="1" edge="1">
+                    <mxGeometry width="160" relative="1" as="geometry">
+                        <mxPoint x="320.0999999999999" y="479.71" as="sourcePoint"/>
+                        <mxPoint x="209.25" y="479.71" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="40" value="Analyse Save Data" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#434445;aspect=fixed;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.vvd.web_browser;" parent="1" vertex="1">
+                    <mxGeometry x="115.49000000000001" y="450" width="84.51" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="42" value="Chess.com&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;.PGN File" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#434445;aspect=fixed;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.vvd.log_files;" parent="1" vertex="1">
+                    <mxGeometry x="536.71" y="290" width="48.4" height="60.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="Permanent&lt;br&gt;Storage" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#434445;aspect=fixed;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.vvd.disk;" parent="1" vertex="1">
+                    <mxGeometry x="342.1" y="640" width="42" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" value="Commit DB to&lt;br&gt;Hard Drive" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=block;endFill=1;" parent="1" edge="1">
+                    <mxGeometry x="0.2495" y="-40" width="160" relative="1" as="geometry">
+                        <mxPoint x="360.0000000000001" y="550" as="sourcePoint"/>
+                        <mxPoint x="360.0400000000001" y="630" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="46" value="Restore DB&lt;br&gt;from Hard Drive" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=block;endFill=1;" parent="1" edge="1">
+                    <mxGeometry x="-0.25" y="-43" width="160" relative="1" as="geometry">
+                        <mxPoint x="366.90000000000003" y="630" as="sourcePoint"/>
+                        <mxPoint x="366.90000000000003" y="550" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="47" value="PNG Heat Map" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#434445;aspect=fixed;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.vvd.document;" parent="1" vertex="1">
+                    <mxGeometry x="132.75" y="730" width="51.1" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="Generate Move&lt;br&gt;Frequency" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=block;endFill=1;" parent="1" edge="1">
+                    <mxGeometry x="0.342" y="-47" width="160" relative="1" as="geometry">
+                        <mxPoint x="157.79000000000013" y="540" as="sourcePoint"/>
+                        <mxPoint x="157.46" y="600" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="49" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#434445;aspect=fixed;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.vvd.datastore;" parent="1" vertex="1">
+                    <mxGeometry x="132.75" y="610" width="50" height="39" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="Export as&lt;br&gt;PNG Heat Map" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=block;endFill=1;" parent="1" edge="1">
+                    <mxGeometry x="0.342" y="-47" width="160" relative="1" as="geometry">
+                        <mxPoint x="157.79000000000016" y="660" as="sourcePoint"/>
+                        <mxPoint x="157.46" y="720" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="51" value="Commit File to&lt;br&gt;Hard Drive" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=block;endFill=1;" parent="1" edge="1">
+                    <mxGeometry x="-0.1111" y="-40" width="160" relative="1" as="geometry">
+                        <mxPoint x="200.0000000000001" y="760" as="sourcePoint"/>
+                        <mxPoint x="360" y="740" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                        <Array as="points">
+                            <mxPoint x="360" y="760"/>
+                            <mxPoint x="360" y="740"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="52" value="" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#434445;aspect=fixed;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.vvd.monitor;" parent="1" vertex="1">
+                    <mxGeometry x="114.74000000000002" y="900" width="86.02" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="53" value="Present to&lt;br&gt;User" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=block;endFill=1;" parent="1" edge="1">
+                    <mxGeometry x="0.3402" y="-38" width="160" relative="1" as="geometry">
+                        <mxPoint x="157.73000000000008" y="829.9999999999998" as="sourcePoint"/>
+                        <mxPoint x="157.40000000000003" y="889.9999999999998" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="54" value="Display" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="333.11" y="90" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="55" value="Display" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="127.75" y="980" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="56" value="Chess Project Architecture" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="150" y="40" width="360" height="40" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
