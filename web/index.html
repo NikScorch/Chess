@@ -141,56 +141,75 @@
                 <p class="text">
                     This project models chess in python. <br>
                     I am using the external library <a href="https://www.pygame.org">PyGame</a> to provide a graphical interface. <br>
-                    I am basing this game of the Sanskrit version of chess (from 500-700 AD) which did not have check or checkmate. the king could be taken like a normal piece, this would end the game.
+                    I am basing this game on the Sanskrit version of chess (from 500-700 AD) which did not have a check or checkmate system. 
+                    The king could be taken like a normal piece and this would end the game.
                 </p>
                 <p class="text">
-                    There were a few core components I wanted to complete:
+                    There were a few core features I want to complete:
                     <ul class="text">
-                        <li>A turn based system</li>
-                        <li>Enforcing correct movement of pieces</li>
-                        <li>Pawn promotion</li>
+                        <li>A turn system</li>
+                        <li>Enforce correct movement of pieces</li>
+                        <li>Pawn promotion to Queen</li>
                         <li>Automatic movement of pieces</li>
                         <li>Game save states</li>
                     </ul>
                 </p>
-                <p class="text">
-                    Since chess is a complex game with many different pieces, I needed my project architechture to be flexible enough to process this.
-                <p class="text">
-                    I decided to go for an object oriented approach to my design. Creating two major classes which everything works off.
+                <p>
+                    Since chess is a complex game with many different pieces, I needed my project architecture
+                    to be flexible enough to process this.
                 </p>
-                <p class="text">
-                    The "Board" and "ChessPiece" classes hold effectively all of the programs code. 
+                <p>
+                    I decided to go for an object-oriented approach to my design. Creating two major classes 
+                    in which everything works off.
                 </p>
-                <p class="text">
-                    The "ChessPiece" class assigns an object a colour value, piece value, position value and a couple status values for taking pieces. 
+                <p>
+                    The "Board" and "ChessPiece" classes effectively hold all of the game's code. 
                 </p>
-                <p class="text">
-                    Meanwhile, the "Board" class houses multiple "ChessPiece" objects. It handles setting up the board, deciding whose turn it is, logging move data for analysis, saving the game and loading the game. It can also move a piece for a player automatically. <br>
+                <p>
+                    A "ChessPiece" object has a colour value, piece type value, position value and a couple 
+                    of status values for taking pieces. 
                 </p>
-                <p class="text">
-                    By splitting the code into these two sections, we can many pieces on the board with relative ease.
+                <p>
+                    Meanwhile, the "Board" class houses multiple "ChessPiece" objects. It handles setting up the 
+                    board, deciding whose turn it is, logging move data for analysis, saving the game and loading 
+                    the game. It can also move a piece for a player automatically.
+                </p>
+                <p>
+                    By splitting the code into these two sections, we can process a variety of pieces on the 
+                    board with relative ease.
                 </p>
                 <hr>
-                <p class="text">
+                <p>
                     The game can process both keyboard input, mouse input and touch input.
                 </p>
                 <p>
-                    It has been designed to accept a mouse click anywhere within the window. The program is intelligent enough to be able to reject an input if it is invalid (ie. the user has not clicked on the ChessPiece, rather they clicked on empty space)
+                    It has been designed to accept a mouse click anywhere within the window. The program is intelligent 
+                    enough to be able to reject an input if it is invalid (e.g. the user has not clicked on the ChessPiece, 
+                    rather they clicked on empty space)
                 </p>
                 <p>
-                    The same is true for keyboard input. The keyboard is not required to play the game, but it adds additional functionality that the user can take advantage of.
+                    The same is true for keyboard input. The keyboard is not required to play the game, but it 
+                    adds additional functionality that the user can take advantage of.
                 </p>
                 <p>
-                    For example, saving the game, loading up a previous session, reseting the board and enabling single player mode. 
+                    For example, saving the game, loading up a previous session, resetting the board and 
+                    enabling single-player mode. 
                 </p>
                 <p>
-                    After completing the code for mouse input, I loaded the game onto another computer that had a touch screen. After a few adjustments to my code, the game is full compatible with touch devices. Granted some functionality would be lost on touch only devices as some functions are bound to the keyboard. But for those who struggle with coordinating movements with a mouse and prefer touch screen laptops, the game is designed to be inclusive to those users.
+                    After completing the code for mouse input, I loaded the game onto a computer which has a touch screen. 
+                    After a few adjustments to my code, the game is now fully playable on touch devices. Granted some 
+                    functionality is lost on touch-only devices as some functions are bound to the keyboard.
                 </p>
                 <p>
-                    The game can compile the current state of the board into a save file. This file details the current position of all the pieces on the board, which pieces have been taken, whose turn it is and a log history of every move made so far. The logs include who moved what piece, where they moved it and how long it took them to do so.
+                    The game can compile the current state of the board into a save file. This file details the current 
+                    position of all the pieces on the board, which pieces have been taken, whose turn it is and a log history 
+                    of every move made so far. The logs include who moved what piece, where they moved it and how long it took 
+                    them to do so.
                 </p>
                 <p>
-                    We can analyise these save files to extract data such as the most (max) and least (min) commonly visited squares, the average time taken, 
+                    We can analyse these save files to extract data such as the most (max) and least (min) commonly visited 
+                    squares and the average (mean) time taken per move. We can use this to create a heat map of the most frequently
+                    visited squares on the board.
                 </p>
             </div>
         </div>
@@ -214,44 +233,54 @@
                     Based on your research you should provide a detailed description of your chosen project. You
                     should explain clearly the objectives of your project. 
                 </h3>
-                <p>
+                <!-- <p>
                     I've always wanted to create a chess game. I thought it would serve as an enticing learning experience. 
                     Additionally, I've played a lot of chess recently with my friends so I've become quite familar with it. 
+                </p> -->
+                <p>
+                    Chess has been a game that has been studied for centuries. Many developments and iterations have been 
+                    made to the game over time to create the current rendition of the game played today. Some ancient 
+                    versions of the game didn't have a check or checkmate system. The King could be taken like a normal piece, 
+                    this would end the game, e.g. Sanskrit chess.
                 </p>
                 <p>
-                    Chess has been a game aht has been studied for centuries. Many developments and iteratoin have been 
-                    made to the game over time to create the current rendition of the game that is played today. Some ancient 
-                    versions of the game didn't have check or checkmate (you did not need to notify your oppenent if you were 
-                    attacking their king), the king could be taken like a normal piece to end the game, ie. Sanskrit chess. 
-                    Other versions of chess used unique board sizes and layouts, ie. Shogi. 
+                    For this project, I wanted to approach the problem with an object-oriented design. Since many of 
+                    the pieces would share similar code with minor differences between them, it made sense to go with 
+                    this architectural style. I have previous experience with the OOP style. For this project, I based a lot 
+                    of my project on <a href="https://www.chess.com">chess.com</a>'s current functionality. I wanted to 
+                    emulate most of their core features. Luckily, <a href="https://www.chess.com">chess.com</a> has great 
+                    <a href="https://www.chess.com/learn-how-to-play-chess">documentation</a> on the game, detailing all 
+                    the rules of the game in depth.
+                </p>
+                <p class="text">
+                    There are a few core components I want to complete:
+                    <ul class="text">
+                        <li>A turn system</li>
+                        <li>Enforce correct movement of pieces</li>
+                        <li>Pawn promotion to a Queen</li>
+                        <li>Automatic movement of pieces</li>
+                        <li>Game save states</li>
+                    </ul>
                 </p>
                 <p>
-                    for this project, i knew i wanted to approach the problem with an object oriented design. since many of 
-                    the pieces would share similar code with minor differences, it made sense to go with this architechture style. 
-                    i had worked with oop systems in the past, such as minecraft server modding, so i knew some of its advantages 
-                    and disadvantages first hand. for this project, i based a lot of my project on <a href="https://www.chess.com">chess.com</a>'s 
-                    current functionality. I wanted to emulate most of their core features. Luckily, <a href="https://www.chess.com">chess.com</a> has
-                    great <a href="https://www.chess.com/learn-how-to-play-chess">documentation</a> on chess, detailing all the rules of the game.
+                    The program would be comprised of two dominant classes, one for chess pieces and another for the 
+                    chessboard and turn handling. 
                 </p>
                 <p>
-                    I knew off the bat the program would be comprised of two dominant classes, one for chess pieces, and the 
-                    other for the board and turn handling. This would allow me to compartmentalise the behemoth of a project.
-                </p>
-                <p>
-                    In order to model the chess piece class will need atributes for its colour, piece type, where it is on 
-                    the board, if it has been taken or not, if it ready to take another piece, what board it is asscociate 
-                    with and if it is currently attached to the mouse. Additionally it needs methods to promote from a pawn 
+                    To model the "ChessPiece" class, it will need attributes for its colour, piece type, where it is on 
+                    the board, if it has been taken or not, if it is ready to take another piece, what board it is asscociated 
+                    with and if it is currently attached to the mouse. Additionally, it needs methods to promote from a pawn 
                     to a queen, remove itself off the board and check if a piece can move to a given position. These three 
-                    methods will be called in a loop in the models "update" function, which will check for all of the above 
-                    mentioned parameters.
+                    methods will be called in a loop in the model's "update" function, which will check for all of the 
+                    above-mentioned parameters.
                 </p>
                 <p>
-                    The chess piece class should hold a function to check if an objecct can move to a designated position 
+                    The "ChessPiece" class should hold a function to check if an object can move to a designated position 
                     on the board. It needs to work for different piece types. Firstly, it needs to avoid the new position 
-                    if it holds one of the players own pieces. Secondly, it needs to if there is any piece blocking its path 
-                    to the new position. Thirdly, it needs to respect the movement restrictions of that piece. The third 
-                    part will have a switch/match statement with a case for each piece type (Rooks, Knights, Bishops, Queens, 
-                    Pawns and Kings), this is detailed thouroughly in this <a href="https://www.chess.com/terms/chess-pieces">article</a>. 
+                    if it holds one of the player's pieces. Secondly, it needs to calculate if there is a piece blocking its path. 
+                    Thirdly, it needs to respect the movement restrictions of that piece. The third 
+                    part will use a switch/match statement with a case for each piece type (Rooks, Knights, Bishops, Queens, 
+                    Pawns and Kings), this is detailed thoroughly in this <a href="https://www.chess.com/terms/chess-pieces">article</a>. 
                 </p>
 
                 <!-- <hr>
@@ -295,38 +324,38 @@
                     You should explain how modelling and abstraction will be applied to your project. 
                 </h3>
                 <p>
-                    When it commes to the architechtural design of my project, I'll be approaching the task with an object oriented design.
-                    I've work with OOP projects in the past. This gives me a lot of flexibility when the game is running and when data is saved
-                    as it will be in a consistent format that will reflect the programmings style. 
+                    When it comes to the architectural design of my project, I'll be approaching the task with an object-oriented design.
+                    I've worked with OOP projects in the past. This gives me a lot of flexibility when the game is running and when data is saved
+                    as it will be in a consistent format that will reflect the programming style. 
                 </p>
                 <p>
-                    From a top down level of the project, the core game will have user input (from either a keyboard, mouse or touchscreen),
-                    the main game/process, an output to the screen, a save file database. Additionally I will need a way to process data from 
+                    From a top-down level of the project, the core game will have user input (from either a keyboard, mouse or touchscreen),
+                    the main game/process, output to the screen and a save file database. Additionally, I will need a way to process data from 
                     other chess games into a common format, this will output into the save file database. Finally, I want a processor to take
-                    the save file database and run anaylsis on it, preferably outputing a frequency heat map as well.
+                    the save file database and run an analysis on it, preferably outputting a frequency heat map as well.
                 </p>
                 <p>
                     This system is illustrated below
                 </p>
-                <img src="diagrams/sysarch.svg" alt="Diagram" style="width: 100%;">
+                <img src="diagrams/sysarch.svg" alt="System Architecture Diagram" style="width: 100%;">
                 <p>
-                    Now onto the main game logic. We will need an event loop to process user data and update the board on a recurring basis.
+                    Now onto the main game logic. We will need an event loop to process user data and update the board regularly.
                     We will have a chess piece class with coordinate, colour and shape attributes. Then we will have a board class with two 
                     chesspiece arrays and attributes for whose turn it is, who has won and how many moves have been taken and logs for every move. 
                     The position of all the pieces on the board is held inside each chess piece object. Each object knows where itself is, but not
                     any of the other pieces. It has to call on the board its parent board to retrieve a list of all the other pieces. 
                 </p>
                 <p>
-                    User input will be processed in the main function, both keyboard and mouse input will be processed immediately so the effects
-                    are shown on screen at the end of the game tick (loop iteration). This must handle picking up pieces with the mouse, switching 
-                    gamemodes and saving/loading game files. Then call the "update" method on every chess piece and we render the board thereafter. 
+                    User input will be processed in the main function and both keyboard and mouse input will be processed immediately so the effects
+                    are shown on the screen at the end of the game tick (loop iteration). This must handle picking up pieces with the mouse, switching 
+                    game modes and saving/loading game files. Then call the "update" method on every chess piece and we render the board thereafter. 
                     The "update" function will check if the piece has been picked up, if its new position is valid and if it should capture another 
                     piece. The board class will have a "draw" function to easily render the checkerboard.
                 </p>
                 <p>
                     The diagram below illustrates all this logic working together
                 </p>
-                <img src="diagrams/chess.py.svg" alt="Diagram" style="width: 100%;">
+                <img src="diagrams/chess.py.svg" alt="Control Flow Diagram" style="width: 100%;">
 
                 <!-- <hr>
                 <p>
@@ -366,43 +395,43 @@
                     creating your project. 
                 </h3>
                 <p>
-                    Git was used during the entire development of the project. This let me keep track of progress and 
+                    Git was used during the entire development of the project. This lets me keep track of progress and 
                     roll back the project to a previous state should something go catastrophically wrong. The project 
                     can be found <a href="https://github.com/NikScorch/Chess">here</a>.
                 </p>
                 <p>
-                    I knew that I wanted to design in an OOP style. In the main program, there is no global variables. Everything must
+                    I knew that I wanted to design in an OOP style. In the main program, there are no global variables. Everything must
                     be passed from one function or another. With this in mind, we structure our code so that a board object contains
                     many chess piece objects. Every chess piece takes the parent board as a parameter, this way each chess piece
                     has access to the data of every other chess piece. The same is done for the GUI window, the board class takes
-                    the screen as parameter "ctx". With this system, every object in has access to every other object in a consistent
+                    the screen as parameter "ctx". With this system, every object has access to every other object in a consistent
                     structure.
                 </p>
                 <p>
-                    Originally I have planned to store all chess piece objects in a 2d array with their position in the array representing
+                    Originally I planned to store all chess piece objects in a 2d array with their position in the array representing
                     their position on the board. This created problems when rendering the pieces and checking where pieces could move to.
-                    The code would've needed to loop over the 2d array many times to retrieve co-ordinate data. This proved to be a clunky
+                    The code would've needed to loop over the 2d array many times to retrieve coordinate data. This proved to be a clunky
                     solution that I was not comfortable working with.
                 </p>
                 <p>
                     One of the largest problems I had to solve regarded the "check_position" function. This compares where a piece is to 
-                    where is wants to go and returns whether or not a piece can go there. It has a few generic rules that apply to all
-                    pieces, but it then switchs its logic to be specific to the piece type, e.g. Knight, Bishop, etc. 
+                    where it wants to go and returns whether or not a piece can go there. It has a few general rules that apply to all
+                    pieces, but it then switches its logic to be specific to the piece type, e.g. Knight, Bishop, etc. 
                 </p>
                 <p> 
                     Some pieces were relatively simple to implement. The Rook component checks if only one axis has changed, the Bishop
                     component checks if the slope between the new position and previous position has an absolute value of 1, the Queen 
-                    combines both of these checks, the Knight can only move in a radius of 2.2 squares away from its starting position 
-                    (this was calculated using the pythagorean theorem). Pawns have their own set of rules, this includes when they can 
-                    move two squares, when they can take a piece, what direction they move when taking a piece and what direction they can
+                    combines both of these checks and the Knight can only move in a radius of 2.2 squares away from its starting position 
+                    (this was calculated using the Pythagorean theorem). Pawns have their own set of rules, this includes when they are allowed
+                    to move two squares, when they can take a piece, what direction they move when taking a piece and what direction they can
                     move based on their colour.
                 </p>
                 <p>
-                    However, the most tedious piece to implement was the King. Ordinarily the King moves in a radius of 1.4 or 1.0 squares.
-                    There is only one excception to this, if the king wants to castle. Under these circumstances, the game must figure out 
+                    However, the most tedious piece to implement was the King. Ordinarily, the King moves in a radius of 1.4 or 1.0 squares.
+                    The only exception to this is if the king wants to castle. Under these circumstances, the game must figure out 
                     which Rook the King is castling with, whether that specific King and Rook pair have a clear path between them and neither
-                    piece should have moved yet. If any one of these checks fail, then the King will not castle. This required adding a new
-                    "moved" attribute to pieces to denote if they have moved yet. Addtionally, this had to be represented appropiately in
+                    piece has moved yet. If any one of these checks fails, then the King will not castle. This required adding a new
+                    "moved" attribute to pieces to denote if they have moved yet. Additionally, this had to be represented appropriately in
                     the game save file, this was done by adding a 0 tick move on the Rook, impossibly fast for a human, so therefore it must've
                     castled.
                 </p>
@@ -423,7 +452,7 @@
                     You should include a test table to highlight your test cases, expected results, outcomes and test
                     data that were used. 
                 </h3>
-                <p>
+                <!-- <p>
                     <ul class="text">
                         <li> test table </li>
                         <li> show that it works??/ </li>
@@ -432,26 +461,23 @@
                         <li> show test table on conversion functions </li>
                         <li> how does the user decide on single or multiplayer (add AI toggle? for auto moves?) </li>
                     </ul>
-                </p>
+                </p> -->
                 <p>
                     Since my game handles keyboard and mouse input, it needs to be able to process a wide range of values from these sources.
-                    Noteable, it needs to reject any inputs from unmapped keys, and it must be able to recover if the user clicks outside the
+                    Notably, it needs to reject any inputs from unmapped keys, and it must be able to recover if the user clicks outside the
                     window or on an empty space. 
                 </p>
                 <p>
                     When the user clicks on the screen, it tries to find which piece the mouse is closest to. It does this by drawing a line
-                    from the mouse to the center of every piece on the board. Afterwards, it selects the piece with the shortest distance to 
+                    from the mouse to the centre of every piece on the board. Afterwards, it selects the piece with the shortest distance to 
                     the mouse and notifies the rest of the program. Two problems arose with this: originally it did not get the distance from
-                    the center of the pieces but rather the top right corner. This would cause issues where if you clicked a piece on its right 
-                    side, you would actually pick up the piece to the right of the one you thought you would pick up. Additionally, the code
+                    the centre of the pieces but rather the top right corner. This would cause issues where if you clicked a piece on its right 
+                    side, you would pick up the piece to the right of the one you thought you would pick up. Additionally, the code
                     did not know what do to if you clicked an empty space as it assumed something had to be there resulting in a crash.
                 </p>
                 <p>
-                    These edge cases proved to be tedious to fix, but provider a much better user experience.
-                </p>
-                <p>
-                    During development, it was paramount that I could switch between my co-ordinate notation for pieces and chess board square 
-                    names. Co-ordinates are tuples with an X and Y value, both starting at 0 and maxing out at 7, meanwhile square names are two 
+                    During development, it was paramount that I could switch between my coordinate notation for pieces and chess board square 
+                    names. Co-ordinates are tuples with an X and Y value, both starting at 0 and maxing out at 7, meanwhile, square names are two 
                     character strings with a letter (A through H) and a number (1 through 8). I created two sister functions which work as the 
                     inverse of each other. The test table below shows the code converting from square names to co-ordinates
                 </p>
@@ -522,9 +548,9 @@
                 </table>
                 <p>
                     Notice, I expected a failure for certain parameters, yet in two cases it succeeded regardless. In theory, anything out of 
-                    bounds should envoke an error, however, in reality an error is only caused if the letter part is unrecognized. The function
+                    bounds should evoke an error, in reality, an error is only caused if the letter part is unrecognized. The function
                     will take any number for the second half and apply the same mathematics on top of it, but for the letter half the function 
-                    references a list with 8 letters and retrieves the corosponding index. Because of this, the function will only fail if the 
+                    references a list with 8 letters and retrieves the corresponding index. Because of this, the function will only fail if the 
                     letter is unknown. 
                 </p>
             </div>
@@ -544,7 +570,35 @@
                     future. 
                 </h3>
                 <p>
-
+                    Overall im satisfied with my project. Out of my original goals (specified in the Investigation and Plan section)
+                    I was able to achieve the many of them
+                    <ul class="text">
+                        <li>✅ A turn based system</li>
+                        <li>✅ Enforcing correct movement of pieces</li>
+                        <li>✅ Pawn promotion</li>
+                        <li>✅ Automatic movement of pieces</li>
+                        <li>✅ Game save states</li>
+                    </ul>
+                </p>
+                <p>
+                    Although it was not listed, I had wanted to get a checkmate algorithm completed. This algorithm proved to have too
+                    many edge cases to consider and was a nightmare to test properly, thus it did not make the cut. The solution I had
+                    to this problem could not consider other pieces moving in front of the king to block checkmate, so I abandoned it.
+                </p>
+                <p>
+                    If I were to improve the project, I would want to add a GUI for every function currently bound to the keyboard, 
+                    add a save/load file dialog, add checkmate, export .chess files as .gif and possibly implement online play.
+                </p>
+                <p>
+                    Additionally, I would be interested in creating a more advanced single player mode. The current implementation cuts
+                    a lot of corners and is extremely easy to beat as it has no intelligence whatsoever. I could possibly hook 
+                    the <a href="https://stockfishchess.org">Stockfish</a> engine into the game as a quick solution, but I would like
+                    to make my basic engine. 
+                </p>
+                <p>
+                    The "check_position" function of the chess piece class is in dire need of a rework. Its performance is dreadful
+                    which is apparent when the game auto plays at full speed. The main bottleneck is this function, it has nested 
+                    for loops consuming an egregious number of cpu cycles. 
                 </p>
             </div>
         </div>
@@ -562,7 +616,94 @@
                     overall word count. 
                 </h3>
                 <p>
-
+                    Archive.org. (2023). Standard: Portable Game Notation Specification and Implementation Guide. [online] Available at: https://ia802908.us.archive.org/26/items/pgn-standard-1994-03-12/PGN_standard_1994-03-12.txt [Accessed 20 Mar. 2023].
+                </p>
+                <p>
+                    Chess.com. (n.d.). Chess Pieces Names, Moves & Values. [online] Available at: https://www.chess.com/terms/chess-pieces.
+                </p>
+                <p>
+                    Chess.com. (n.d.). Chessboard - Chess Terms. [online] Available at: https://www.chess.com/terms/chessboard#chessboard [Accessed 20 Mar. 2023].
+                </p>
+                <p>
+                    Davidson, H.A. (2010). A short history of chess. Whitefish, Mt: Kessinger, pp.22, 63–64.
+                </p>
+                <p>
+                    developer.mozilla.org. (n.d.). background-color - CSS: Cascading Style Sheets | MDN. [online] Available at: https://developer.mozilla.org/en-US/docs/Web/CSS/background-color.
+                </p>
+                <p>
+                    developer.mozilla.org. (n.d.). background-size - CSS: Cascading Style Sheets | MDN. [online] Available at: https://developer.mozilla.org/en-US/docs/Web/CSS/background-size [Accessed 20 Mar. 2023].
+                </p>
+                <p>
+                    developer.mozilla.org. (n.d.). Styling tables - Learn web development | MDN. [online] Available at: https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Styling_tables.
+                </p>
+                <p>
+                    docs.python.org. (n.d.). json — JSON encoder and decoder — Python 3.8.3rc1 documentation. [online] Available at: https://docs.python.org/3/library/json.html.
+                </p>
+                <p>
+                    freeCodeCamp (2019). Pygame Tutorial for Beginners - Python Game Development Course. [online] www.youtube.com. Available at: https://www.youtube.com/watch?v=FfWpgLFMI7w.
+                </p>
+                <p>
+                    GeeksforGeeks. (2019). Writing to file in Python. [online] Available at: https://www.geeksforgeeks.org/writing-to-file-in-python/.
+                </p>
+                <p>
+                    Google Developers. (n.d.). CSS API update | Google Fonts. [online] Available at: https://developers.google.com/fonts/docs/css2.
+                </p>
+                <p>
+                    Google Fonts. (n.d.). Open Sans. [online] Available at: https://fonts.google.com/specimen/Open+Sans?vfonly=true [Accessed 20 Mar. 2023].
+                </p>
+                <p>
+                    htmlcheatsheet.com. (n.d.). HTML Cheat Sheet. [online] Available at: https://htmlcheatsheet.com [Accessed 20 Mar. 2023].
+                </p>
+                <p>
+                    International Chess Federation (FIDE). (2018). E. Miscellaneous / 01. Laws of Chess / FIDE Laws of Chess taking effect from 1 January 2018 / FIDE Handbook. [online] Available at: https://handbook.fide.com/chapter/E012018.
+                </p>
+                <p>
+                    Jack, A. (2020). HTML in 5 minutes. [online] www.youtube.com. Available at: https://www.youtube.com/watch?v=salY_Sm6mv4.
+                </p>
+                <p>
+                    Powell, K. (2016). HTML & CSS for Beginners Part 20: How to center a div. [online] www.youtube.com. Available at: https://www.youtube.com/watch?v=ULVu2VNM_54 [Accessed 20 Mar. 2023].
+                </p>
+                <p>
+                    Python, R. (n.d.). Working With Files in Python – Real Python. [online] realpython.com. Available at: https://realpython.com/working-with-files-in-python/.
+                </p>
+                <p>
+                    Python.org. (2019). The Python Tutorial — Python 3.8.0 documentation. [online] Available at: https://docs.python.org/3/tutorial/.
+                </p>
+                <p>
+                    Stack Overflow. (2009). python - How do I get the current time? [online] Available at: https://stackoverflow.com/questions/415511/how-do-i-get-the-current-time [Accessed 20 Mar. 2023].
+                </p>
+                <p>
+                    Stack Overflow. (2013). python - How to display text in pygame? [online] Available at: https://stackoverflow.com/questions/20842801/how-to-display-text-in-pygame.
+                </p>
+                <p>
+                    Stack Overflow. (2017a). How to extend a class in python? [online] Available at: https://stackoverflow.com/questions/15526858/how-to-extend-a-class-in-python#15526901 [Accessed 20 Mar. 2023].
+                </p>
+                <p>
+                    Stack Overflow. (2017b). python - How to open a file using the open with statement. [online] Available at: https://stackoverflow.com/questions/9282967/how-to-open-a-file-using-the-open-with-statement [Accessed 20 Mar. 2023].
+                </p>
+                <p>
+                    Stack Overflow. (2018). How save a array to text file in python? [online] Available at: https://stackoverflow.com/questions/51860716/how-save-a-array-to-text-file-in-python#56981871 [Accessed 20 Mar. 2023].
+                </p>
+                <p>
+                    Stack Overflow. (2022). python - Getting key with maximum value in dictionary? [online] Available at: https://stackoverflow.com/questions/268272/getting-key-with-maximum-value-in-dictionary?noredirect=1&lq=1 [Accessed 20 Mar. 2023].
+                </p>
+                <p>
+                    stockfishchess.org. (n.d.). Stockfish - Open Source Chess Engine. [online] Available at: https://stockfishchess.org.
+                </p>
+                <p>
+                    W3Schools (2019). Python Tutorial. [online] W3schools.com. Available at: https://www.w3schools.com/python/.
+                </p>
+                <p>
+                    W3Schools.com (2019). CSS Tutorial. [online] W3schools.com. Available at: https://www.w3schools.com/css.
+                </p>
+                <p>
+                    W3Schools.com (n.d.). HTML Tutorial. [online] www.w3schools.com. Available at: https://www.w3schools.com/html.
+                </p>
+                <p>
+                    www.programiz.com. (n.d.). Python Shallow Copy and Deep Copy (With Examples). [online] Available at: https://www.programiz.com/python-programming/shallow-deep-copy.
+                </p>
+                <p>
+                    www.pygame.org. (n.d.). Pygame Front Page — pygame v2.0.0.dev15 documentation. [online] Available at: https://www.pygame.org/docs/.
                 </p>
             </div>
         </div>
