@@ -23,6 +23,9 @@
 p {
     color: var(--foreground);
 }
+a {
+    color: var(--color13)
+}
 
 body {
     background-image: var(--wallpaper);

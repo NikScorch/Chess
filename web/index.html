@@ -23,21 +23,32 @@
                             - screenshot of analysis functions
                             - explain in english what it does (core concpet)
                             - screenshot of an output
-    * investagtion and plan: talk about inspriation >> other graphical games or OOP projects. experience with  
+    * investagtion and plan: 
+                        talk about inspriation >> other graphical games or OOP projects. experience with  
                         these titles/systems
-    talk about astraction, decomposition (breaking down a large task into a set of smaller tasks) (ie. the check_position function in detail), modelling (how did you implement a chess piece?)
-    * design; talk about absolutely required fuinctionality, i ethe calasses, the board, how it was rendered, 
+                        talk about astraction, decomposition (breaking down a large task into a set of smaller tasks) (ie. the check_position function in detail), modelling (how did you implement a chess piece?)
+    * design: 
+                        sys architechture diagram:
+                            * inputs
+                            * main processses
+                            * where data is stored
+                                - where that gets piped to be analysised
+                                - what output does that produce - images/heatmaps
+                            * where output goes
+                        talk about absolutely required fuinctionality, ie the classes, the board, how it was rendered, 
                         what do you want each pioece to do (you do not have to be nitty gritty ie the maths behind the movement (do that in the implementation)).
                         approach to single player vs multiplayer, what needs to be changed for each
                         do you need functions to save all this data as the game plays (CURRENT BOARD LAYOUT)
                         how is all the current data/status of the pieces stored IN MEMORY
                         decompostion, abstraction and modelling, talk about check_position
-    * implementation: OOP, another function in detail, explain a problem
+    * implementation: 
+                        OOP, another function in detail, explain a problem
                         basically the diary of the project, defo reference your git logs
                         i was working on this and finally got it working and then a example
                         why did you store the position in the ChessPiece object rather than a global 2d array 
                         with all positonal data of the pieces that they reference after the fact
-    * evaluation: did your design style OOP work? are there function s taht could be optimised under another 
+    * evaluation: 
+                        did your design style OOP work? are there function s taht could be optimised under another 
                         approach. when you abstraced the project was there another solution, is it clunky? can it 
                         be neater? (be technical), maybe add a gui? would it have been practical to add for the 
                         scope of this course and the time frame? 
@@ -45,15 +56,7 @@
                         talk about why you did a random move set rather than an ai
                         could reference stockfish or other implementations
                         functionality to move pieces by an external program is there but it is not intelligent
-
-    sys architechture diagram:
-        * inputs
-        * main processses
-        * where data is stored
-            - where that gets piped to be analysised
-            - what output does that produce - images/heatmaps
-        * where output goes
-    -->
+-->
     <head>
         <link rel="stylesheet" href="styles.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans">
@@ -63,6 +66,7 @@
         <title>LC CS Chess Project</title>
     </head>
     <body>
+        <!-- Heading -->
         <div class="container">
             <h1>Leaving Cert 2023 CS Project</h1>
             <hr>
@@ -105,223 +109,305 @@
                 <img src="../src/pieces/cardinal_png/wr.png" alt="" class="chesspiece">
             </div>
         </div>
-        <div class="container">
-            <hr>
-            <h2>Meeting the Brief</h2>
-            <h3>
-                500 Words + Video
 
-                As part of your report you are required to include a video showing the artefact in operation. The
-                video must not be more than 5 minutes in duration and be no more than 1GB in size.
-                The video should be used to demonstrate how your artefact meets the basic and/or advanced
-                requirements of the brief. It is suggested that you deal with each requirement you attempted in
-                the video and demonstrate how you have achieved it.
-                You may wish to include a brief written description with images demonstrating how your artefact
-                meets each of the requirements. You will not be penalised marks for not including any text if your
-                video is sufficient in describing how you meet each of the requirements. 
-            </h3>
+        <!-- Meeting the Brief -->
+        <div>
+            <div class="container">
+                <hr>
+                <h2>Meeting the Brief</h2>
+                <h3>
+                    500 Words + Video
+
+                    As part of your report you are required to include a video showing the artefact in operation. The
+                    video must not be more than 5 minutes in duration and be no more than 1GB in size.
+                    The video should be used to demonstrate how your artefact meets the basic and/or advanced
+                    requirements of the brief. It is suggested that you deal with each requirement you attempted in
+                    the video and demonstrate how you have achieved it.
+                    You may wish to include a brief written description with images demonstrating how your artefact
+                    meets each of the requirements. You will not be penalised marks for not including any text if your
+                    video is sufficient in describing how you meet each of the requirements. 
+                </h3>
+            </div>
+            <video width="100%" style="max-width: 1200px; display: block; margin: 0 auto;" controls>
+                <source src="video/chess project - FINAL.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="container">
+                <p class="text" style="font-weight: bold;">
+                    Welcome to my leaving cert computer science project for 2023.
+                </p>
+                <p class="text">
+                    This project models chess in python. <br>
+                    I am using the external library <a href="https://www.pygame.org">PyGame</a> to provide a graphical interface. <br>
+                    I am basing this game of the Sanskrit version of chess (from 500-700 AD) which did not have check or checkmate. the king could be taken like a normal piece, this would end the game.
+                </p>
+                <p class="text">
+                    There were a few core components I wanted to complete:
+                    <ul class="text">
+                        <li>A turn based system</li>
+                        <li>Enforcing correct movement of pieces</li>
+                        <li>Pawn promotion</li>
+                        <li>Automatic movement of pieces</li>
+                        <li>Game save states</li>
+                    </ul>
+                </p>
+                <p class="text">
+                    Since chess is a complex game with many different pieces, I needed my project architechture to be flexible enough to process this.
+                <p class="text">
+                    I decided to go for an object oriented approach to my design. Creating two major classes which everything works off.
+                </p>
+                <p class="text">
+                    The "Board" and "ChessPiece" classes hold effectively all of the programs code. 
+                </p>
+                <p class="text">
+                    The "ChessPiece" class assigns an object a colour value, piece value, position value and a couple status values for taking pieces. 
+                </p>
+                <p class="text">
+                    Meanwhile, the "Board" class houses multiple "ChessPiece" objects. It handles setting up the board, deciding whose turn it is, logging move data for analysis, saving the game and loading the game. It can also move a piece for a player automatically. <br>
+                </p>
+                <p class="text">
+                    By splitting the code into these two sections, we can many pieces on the board with relative ease.
+                </p>
+                <hr>
+                <p class="text">
+                    The game can process both keyboard input, mouse input and touch input.
+                </p>
+                <p>
+                    It has been designed to accept a mouse click anywhere within the window. The program is intelligent enough to be able to reject an input if it is invalid (ie. the user has not clicked on the ChessPiece, rather they clicked on empty space)
+                </p>
+                <p>
+                    The same is true for keyboard input. The keyboard is not required to play the game, but it adds additional functionality that the user can take advantage of.
+                </p>
+                <p>
+                    For example, saving the game, loading up a previous session, reseting the board and enabling single player mode. 
+                </p>
+                <p>
+                    After completing the code for mouse input, I loaded the game onto another computer that had a touch screen. After a few adjustments to my code, the game is full compatible with touch devices. Granted some functionality would be lost on touch only devices as some functions are bound to the keyboard. But for those who struggle with coordinating movements with a mouse and prefer touch screen laptops, the game is designed to be inclusive to those users.
+                </p>
+                <p>
+                    The game can compile the current state of the board into a save file. This file details the current position of all the pieces on the board, which pieces have been taken, whose turn it is and a log history of every move made so far. The logs include who moved what piece, where they moved it and how long it took them to do so.
+                </p>
+                <p>
+                    We can analyise these save files to extract data such as the most (max) and least (min) commonly visited squares, the average time taken, 
+                </p>
+            </div>
         </div>
-        <video width="100%" style="max-width: 1200px; display: block; margin: 0 auto;" controls>
-            <source src="video/chess project - FINAL.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="container">
-            <p class="text" style="font-weight: bold;">
-                Welcome to my leaving cert computer science project for 2023.
-            </p>
-            <p class="text">
-                This project models chess in python. <br>
-                I am using the external library <a href="https://www.pygame.org">PyGame </a>to provide a graphical interface. <br>
-                I am basing this game of the Sanskrit version of chess (from 500-700 AD) which did not have check or checkmate. the king could be taken like a normal piece, this would end the game.
-            </p>
-            <p class="text">
-                There were a few core components I wanted to complete:
-                <ul class="text">
-                    <li>A turn based system</li>
-                    <li>Enforcing correct movement of pieces</li>
-                    <li>Pawn promotion</li>
-                    <li>Automatic movement of pieces</li>
-                    <li>Game save states</li>
-                </ul>
-            </p>
-            <p class="text">
-                Since chess is a complex game with many different pieces, I needed my project architechture to be flexible enough to process this.
-            <p class="text">
-                I decided to go for an object oriented approach to my design. Creating two major classes which everything works off.
-            </p>
-            <p class="text">
-                The "Board" and "ChessPiece" classes hold effectively all of the programs code. 
-            </p>
-            <p class="text">
-                The "ChessPiece" class assigns an object a colour value, piece value, position value and a couple status values for taking pieces. 
-            </p>
-            <p class="text">
-                Meanwhile, the "Board" class houses multiple "ChessPiece" objects. It handles setting up the board, deciding whose turn it is, logging move data for analysis, saving the game and loading the game. It can also move a piece for a player automatically. <br>
-            </p>
-            <p class="text">
-                By splitting the code into these two sections, we can many pieces on the board with relative ease.
-            </p>
-            <hr>
-            <p class="text">
-                The game can process both keyboard input, mouse input and touch input.
-            </p>
-            <p>
-                It has been designed to accept a mouse click anywhere within the window. The program is intelligent enough to be able to reject an input if it is invalid (ie. the user has not clicked on the ChessPiece, rather they clicked on empty space)
-            </p>
-            <p>
-                The same is true for keyboard input. The keyboard is not required to play the game, but it adds additional functionality that the user can take advantage of.
-            </p>
-            <p>
-                For example, saving the game, loading up a previous session, reseting the board and enabling single player mode. 
-            </p>
-            <p>
-                After completing the code for mouse input, I loaded the game onto another computer that had a touch screen. After a few adjustments to my code, the game is full compatible with touch devices. Granted some functionality would be lost on touch only devices as some functions are bound to the keyboard. But for those who struggle with coordinating movements with a mouse and prefer touch screen laptops, the game is designed to be inclusive to those users.
-            </p>
 
+        <!-- Investigation and Plan -->
+        <div>
+            <div class="container">
+                <hr>
+                <h2>Investigation and Plan</h2>
+                <!-- add screenshots of other implementations of chess and what you took inspiration from 
+                waht did you want to achieve
+            -->
+                <h3>
+                    400 words
 
+                    In this section of the report you should show evidence of your own research on the thematic brief,
+                    including research on existing solutions, systems or ideas that are aligned to the brief. As a starting
+                    point you may consider using the URLs provided earlier in this document, but please note that this
+                    list is neither exclusive nor exhaustive. All references should be included in the reference section
+                    of your report.
+                    Based on your research you should provide a detailed description of your chosen project. You
+                    should explain clearly the objectives of your project. 
+                </h3>
+                <p>
+                    I've always wanted to create a chess game. I thought it would serve as an enticing learning experience. 
+                    Additionally, I've played a lot of chess recently with my friends so I've become quite familar with it. 
+                </p>
+                <p>
+                    Chess has been a game aht has been studied for centuries. Many developments and iteratoin have been 
+                    made to the game over time to create the current rendition of the game that is played today. Some ancient 
+                    versions of the game didn't have check or checkmate (you did not need to notify your oppenent if you were 
+                    attacking their king), the king could be taken like a normal piece to end the game, ie. Sanskrit chess. 
+                    Other versions of chess used unique board sizes and layouts, ie. Shogi. 
+                </p>
+                <p>
+                    for this project, i knew i wanted to approach the problem with an object oriented design. since many of 
+                    the pieces would share similar code with minor differences, it made sense to go with this architechture style. 
+                    i had worked with oop systems in the past, such as minecraft server modding, so i knew some of its advantages 
+                    and disadvantages first hand. for this project, i based a lot of my project on <a href="https://www.chess.com">chess.com</a>'s 
+                    current functionality. I wanted to emulate most of their core features. Luckily, <a href="https://www.chess.com">chess.com</a> has
+                    great <a href="https://www.chess.com/learn-how-to-play-chess">documentation</a> on chess, detailing all the rules of the game.
+                </p>
+                <p>
+                    I knew off the bat the program would be comprised of two dominant classes, one for chess pieces, and the 
+                    other for the board and turn handling. This would allow me to compartmentalise the behemoth of a project.
+                </p>
+                <p>
+                    In order to model the chess piece class will need atributes for its colour, piece type, where it is on 
+                    the board, if it has been taken or not, if it ready to take another piece, what board it is asscociate 
+                    with and if it is currently attached to the mouse. Additionally it needs methods to promote from a pawn 
+                    to a queen, remove itself off the board and check if a piece can move to a given position. These three 
+                    methods will be called in a loop in the models "update" function, which will check for all of the above 
+                    mentioned parameters.
+                </p>
+                <p>
+                    The chess piece class should hold a function to check if an objecct can move to a designated position 
+                    on the board. It needs to work for different piece types. Firstly, it needs to avoid the new position 
+                    if it holds one of the players own pieces. Secondly, it needs to if there is any piece blocking its path 
+                    to the new position. Thirdly, it needs to respect the movement restrictions of that piece. The third 
+                    part will have a switch/match statement with a case for each piece type (Rooks, Knights, Bishops, Queens, 
+                    Pawns and Kings), this is detailed thouroughly in this <a href="https://www.chess.com/terms/chess-pieces">article</a>. 
+                </p>
 
-            <hr>
-            <h2>investigation and plan</h2>
-            <!-- add screenshots of other implementations of chess and what you took inspiration from 
-            waht did you want to achieve
-         -->
-            <h3>
-                400 words
-
-                In this section of the report you should show evidence of your own research on the thematic brief,
-                including research on existing solutions, systems or ideas that are aligned to the brief. As a starting
-                point you may consider using the URLs provided earlier in this document, but please note that this
-                list is neither exclusive nor exhaustive. All references should be included in the reference section
-                of your report.
-                Based on your research you should provide a detailed description of your chosen project. You
-                should explain clearly the objectives of your project. 
-            </h3>
-            <p>
-                I've always wanted to create a chess game, I thought it would serve as an inticing learning experience. 
-                For this project I planned to use the PyGame to create a GUI chess game rather than a CLI based game. 
-                Considering chess relies on patterns that are easier to see on a physical board, it made more sense 
-                to render the game graphically. 
-            </p>
-            <p>
-                Chess is a game that has been studied for centuries. Many developments and iterations have been made 
-                to the game to create the current rendition that is played today. Ancient versions of the game didn't 
-                even have check or checkmate (you did not need to notice your opponent if their king was under attack)
-                this mean't the king could be taken like any other piece on the board, except taking the king ended the 
-                game
-            </p>
-            <p>
-                <a href="https://www.chess.com">Chess.com</a> has a wide range of 
-                <a href="https://www.chess.com/learn-how-to-play-chess"> documentation</a> on how chess is meant to be played. 
-                Including how all the pieces move, how the board is set up, checkmate conditions, stalemate conditions 
-                and more. For my version of chess I will foregore checkmate and base my version of the game on ancient 
-                chess. This is because of the complexity of the algorithm. Considering the time allowed and how much 
-                work is need to get the rest of the game functioning, it would be too tedious to implement this function 
-                properly and test it to ensure it has no issues.  For that reason, we will allow the king to be taken 
-                like a normal piece in ancient chess, check does not have to be called.
-            </p>
+                <!-- <hr>
+                <p>
+                    I've always wanted to create a chess game, I thought it would serve as an inticing learning experience. 
+                    For this project I planned to use the PyGame to create a GUI chess game rather than a CLI based game. 
+                    Considering chess relies on patterns that are easier to see on a physical board, it made more sense 
+                    to render the game graphically. 
+                </p>
+                <p>
+                    Chess is a game that has been studied for centuries. Many developments and iterations have been made 
+                    to the game to create the current rendition that is played today. Ancient versions of the game didn't 
+                    even have check or checkmate (you did not need to notice your opponent if their king was under attack)
+                    this mean't the king could be taken like any other piece on the board, except taking the king ended the 
+                    game
+                </p>
+                <p>
+                    <a href="https://www.chess.com">Chess.com</a> has a wide range of 
+                    <a href="https://www.chess.com/learn-how-to-play-chess"> documentation</a> on how chess is meant to be played. 
+                    Including how all the pieces move, how the board is set up, checkmate conditions, stalemate conditions 
+                    and more. For my version of chess I will foregore checkmate and base my version of the game on ancient 
+                    chess. This is because of the complexity of the algorithm. Considering the time allowed and how much 
+                    work is need to get the rest of the game functioning, it would be too tedious to implement this function 
+                    properly and test it to ensure it has no issues.  For that reason, we will allow the king to be taken 
+                    like a normal piece in ancient chess, check does not have to be called.
+                </p> -->
+            </div>
+        </div>
             
-
-            <hr>
-            <h2>Design</h2>
-            <h3>
-                400 words
-            
-                This section of the report should contain a clear description of the design of your project and how
-                it will meet your objectives.
-                You should include a detailed flowchart which gives an overview of how your system will work.
-                You should explain how modelling and abstraction will be applied to your project. 
-            </h3>
-            <p>
-                As I've become more proficient with programming, I've began to appreciate the object oriented design principles more and more. Although I dont agree with everything about the design language, I feel an OOP approach to this project would be best.
-            </p>
-            <p>
-                I will design the program to follow Python3's module structure, this way it can easily packaged later on for distribution. 
-            </p>
-            <p>
-                The program will have two dominant classes, a ChessPiece class and a Board class. As mentioned ealier, ChessPiece will handle data on what type of piece an object is, who owns it and where it is. Similary, the Board class will handle whose turn it is, logging move data, and saving and loading games. 
-            </p>
-            <p>
-                Because of this design, the main function of the program can be much simplier and easier to read.
-            </p>
-            <p>
-                The general control flow of the program is illustrated below
-            </p>
-            <img src="diagrams/chess.py.svg" alt="Diagram" style="width: 100%;">
-            <p>
-                Since most of the complex processing is handled by ChessPiece and Board, the general logic of the program can be followed relatively easily. 
-            </p>
-
-
-            <hr>
-            <h2>Implementation</h2>
-            <h3>
-                500 words
-
-                This section should provide a clear description of how the system was implemented. You should
-                explain the process you went through in creating your artefact.
-                You should explain one of the problems that you encountered during the implementation and
-                describe how you overcame the problem.
-                You should select and explain an algorithm or section of code you designed that was essential in
-                creating your project. 
-            </h3>
-            <p>
-                Git was used during the entire development of the project. This let me keep track of progress and rolled back the project to a previous state should something go catastrophically wrong.
-            </p>
-            <p>
+        <!-- Design -->
+        <div>
+            <div class="container">
+                <hr>
+                <h2>Design</h2>
+                <h3>
+                    400 words
                 
-            </p>
+                    This section of the report should contain a clear description of the design of your project and how
+                    it will meet your objectives.
+                    You should include a detailed flowchart which gives an overview of how your system will work.
+                    You should explain how modelling and abstraction will be applied to your project. 
+                </h3>
+                <p>
+                    When it commes to the architechtural design of my project, I'll be approaching the task with an object oriented design.
+                    I've work with OOP projects in the past
+                </p>
 
+                <img src="diagrams/chess.py.svg" alt="Diagram" style="width: 100%;">
+                <img src="diagrams/sysarch.svg" alt="Diagram" style="width: 100%;">
 
-            <hr>
-            <h2>Testing</h2>
-            <h3>
-                350 words
+                <hr>
+                <p>
+                    As I've become more proficient with programming, I've began to appreciate the object oriented design principles more and more. Although I dont agree with everything about the design language, I feel an OOP approach to this project would be best.
+                </p>
+                <p>
+                    I will design the program to follow Python3's module structure, this way it can easily packaged later on for distribution. 
+                </p>
+                <p>
+                    The program will have two dominant classes, a ChessPiece class and a Board class. As mentioned ealier, ChessPiece will handle data on what type of piece an object is, who owns it and where it is. Similary, the Board class will handle whose turn it is, logging move data, and saving and loading games. 
+                </p>
+                <p>
+                    Because of this design, the main function of the program can be much simplier and easier to read.
+                </p>
+                <p>
+                    The general control flow of the program is illustrated below
+                </p>
+                <p>
+                    Since most of the complex processing is handled by ChessPiece and Board, the general logic of the program can be followed relatively easily. 
+                </p>
+            </div>
+        </div>
 
-                You should describe the extent of testing you carried out, and major problems you encountered
-                during the testing process. Details of testing should include the type of testing carried out and any
-                implications to the design as a result of the testing.
-                You should include a test table to highlight your test cases, expected results, outcomes and test
-                data that were used. 
-            </h3>
-            <p>
-                <ul class="text">
-                    <li> test table </li>
-                    <li> show that it works??/ </li>
-                    <li> ie. that your code logic can handle edge cases (how pawns move) </li>
-                    <li> pieces can only take their own </li>
-                    <li> show test table on conversion functions </li>
-                    <li> how does the user decide on single or multiplayer (add AI toggle? for auto moves?) </li>
-                </ul>
-            </p>
+        <!-- Implementation -->
+        <div>
+            <div class="container">
+                <hr>
+                <h2>Implementation</h2>
+                <h3>
+                    500 words
 
+                    This section should provide a clear description of how the system was implemented. You should
+                    explain the process you went through in creating your artefact.
+                    You should explain one of the problems that you encountered during the implementation and
+                    describe how you overcame the problem.
+                    You should select and explain an algorithm or section of code you designed that was essential in
+                    creating your project. 
+                </h3>
+                <p>
+                    Git was used during the entire development of the project. This let me keep track of progress and rolled back the project to a previous state should something go catastrophically wrong.
+                </p>
+                <p>
+                    
+                </p>
+            </div>
+        </div>
 
-            <hr>
-            <h2>Evaluation</h2>
-            <h3>
-                350 words
+        <!-- Testing -->
+        <div>
+            <div class="container">
+                <hr>
+                <h2>Testing</h2>
+                <h3>
+                    350 words
 
-                You should evaluate the final product in relation to your initial design and your project objectives
-                set out in section 2 of the report.
-                You should suggest, with justification, how your artefact could be improved or iterated upon in the
-                future. 
-            </h3>
-            <p>
+                    You should describe the extent of testing you carried out, and major problems you encountered
+                    during the testing process. Details of testing should include the type of testing carried out and any
+                    implications to the design as a result of the testing.
+                    You should include a test table to highlight your test cases, expected results, outcomes and test
+                    data that were used. 
+                </h3>
+                <p>
+                    <ul class="text">
+                        <li> test table </li>
+                        <li> show that it works??/ </li>
+                        <li> ie. that your code logic can handle edge cases (how pawns move) </li>
+                        <li> pieces can only take their own </li>
+                        <li> show test table on conversion functions </li>
+                        <li> how does the user decide on single or multiplayer (add AI toggle? for auto moves?) </li>
+                    </ul>
+                </p>
+            </div>
+        </div>
 
-            </p>
+        <!-- Evaluation -->
+        <div>
+            <div class="container">
+                <hr>
+                <h2>Evaluation</h2>
+                <h3>
+                    350 words
 
+                    You should evaluate the final product in relation to your initial design and your project objectives
+                    set out in section 2 of the report.
+                    You should suggest, with justification, how your artefact could be improved or iterated upon in the
+                    future. 
+                </h3>
+                <p>
 
-            <hr>
-            <h2>References</h2>
-            <h3>
-                You must reference any information used in your report or in the creation of your artefact, such
-                as: publications including books, professional journals and government reports; online sources and
-                other types of media; source code. To include such material without properly referencing the
-                source will be considered plagiarism. The word count in this section does not count towards your
-                overall word count. 
-            </h3>
-            <p>
+                </p>
+            </div>
+        </div>
 
-            </p>
+        <!-- References -->
+        <div>
+            <div class="container">
+                <hr>
+                <h2>References</h2>
+                <h3>
+                    You must reference any information used in your report or in the creation of your artefact, such
+                    as: publications including books, professional journals and government reports; online sources and
+                    other types of media; source code. To include such material without properly referencing the
+                    source will be considered plagiarism. The word count in this section does not count towards your
+                    overall word count. 
+                </h3>
+                <p>
+
+                </p>
+            </div>
         </div>
     </body>
 </html>
