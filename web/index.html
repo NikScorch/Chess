@@ -294,13 +294,39 @@
                 </h3>
                 <p>
                     When it commes to the architechtural design of my project, I'll be approaching the task with an object oriented design.
-                    I've work with OOP projects in the past
+                    I've work with OOP projects in the past. This gives me a lot of flexibility when the game is running and when data is saved
+                    as it will be in a consistent format that will reflect the programmings style. 
                 </p>
-
-                <img src="diagrams/chess.py.svg" alt="Diagram" style="width: 100%;">
+                <p>
+                    From a top down level of the project, the core game will have user input (from either a keyboard, mouse or touchscreen),
+                    the main game/process, an output to the screen, a save file database. Additionally I will need a way to process data from 
+                    other chess games into a common format, this will output into the save file database. Finally, I want a processor to take
+                    the save file database and run anaylsis on it, preferably outputing a frequency heat map as well.
+                </p>
+                <p>
+                    This system is illustrated below
+                </p>
                 <img src="diagrams/sysarch.svg" alt="Diagram" style="width: 100%;">
+                <p>
+                    Now onto the main game logic. We will need an event loop to process user data and update the board on a recurring basis.
+                    We will have a chess piece class with coordinate, colour and shape attributes. Then we will have a board class with two 
+                    chesspiece arrays and attributes for whose turn it is, who has won and how many moves have been taken and logs for every move. 
+                    The position of all the pieces on the board is held inside each chess piece object. Each object knows where itself is, but not
+                    any of the other pieces. It has to call on the board its parent board to retrieve a list of all the other pieces. 
+                </p>
+                <p>
+                    User input will be processed in the main function, both keyboard and mouse input will be processed immediately so the effects
+                    are shown on screen at the end of the game tick (loop iteration). This must handle picking up pieces with the mouse, switching 
+                    gamemodes and saving/loading game files. Then call the "update" method on every chess piece and we render the board thereafter. 
+                    The "update" function will check if the piece has been picked up, if its new position is valid and if it should capture another 
+                    piece. The board class will have a "draw" function to easily render the checkerboard.
+                </p>
+                <p>
+                    The diagram below illustrates all this logic working together
+                </p>
+                <img src="diagrams/chess.py.svg" alt="Diagram" style="width: 100%;">
 
-                <hr>
+                <!-- <hr>
                 <p>
                     As I've become more proficient with programming, I've began to appreciate the object oriented design principles more and more. Although I dont agree with everything about the design language, I feel an OOP approach to this project would be best.
                 </p>
@@ -318,7 +344,7 @@
                 </p>
                 <p>
                     Since most of the complex processing is handled by ChessPiece and Board, the general logic of the program can be followed relatively easily. 
-                </p>
+                </p> -->
             </div>
         </div>
 
