@@ -1,5 +1,7 @@
 .container{
-    width: 40%;
+    background-color: #021313a0;
+    padding: 2%;
+    width: 42%;
     max-width: 1000px;
     min-width: 700px;
     margin: 0 auto;
@@ -26,6 +28,19 @@ p {
 a {
     color: var(--color13)
 }
+table {
+    width: 100%;
+}
+th, td {
+    padding: 5px;
+    letter-spacing: 1px;
+}
+table, th, td {
+    background-color: #021313;
+    color: var(--foreground);
+    border-collapse: collapse;
+    border: 2px solid var(--foreground);
+}
 
 body {
     background-image: var(--wallpaper);
@@ -34,13 +49,16 @@ body {
     background-attachment: fixed;
     background-size: cover;
     font-family: "Open Sans";
+    margin: 0 auto;
 }
 
 h1 {
     color: var(--color15);
+    text-align: center;
 }
 h2 {
     color: var(--color14);
+    text-align: center;
 }
 h3 {
     color: var(--color13);
