@@ -364,10 +364,45 @@
                     creating your project. 
                 </h3>
                 <p>
-                    Git was used during the entire development of the project. This let me keep track of progress and rolled back the project to a previous state should something go catastrophically wrong.
+                    Git was used during the entire development of the project. This let me keep track of progress and 
+                    roll back the project to a previous state should something go catastrophically wrong. The project 
+                    can be found <a href="https://github.com/NikScorch/Chess">here</a>.
                 </p>
                 <p>
-                    
+                    I knew that I wanted to design in an OOP style. In the main program, there is no global variables. Everything must
+                    be passed from one function or another. With this in mind, we structure our code so that a board object contains
+                    many chess piece objects. Every chess piece takes the parent board as a parameter, this way each chess piece
+                    has access to the data of every other chess piece. The same is done for the GUI window, the board class takes
+                    the screen as parameter "ctx". With this system, every object in has access to every other object in a consistent
+                    structure.
+                </p>
+                <p>
+                    Originally I have planned to store all chess piece objects in a 2d array with their position in the array representing
+                    their position on the board. This created problems when rendering the pieces and checking where pieces could move to.
+                    The code would've needed to loop over the 2d array many times to retrieve co-ordinate data. This proved to be a clunky
+                    solution that I was not comfortable working with.
+                </p>
+                <p>
+                    One of the largest problems I had to solve regarded the "check_position" function. This compares where a piece is to 
+                    where is wants to go and returns whether or not a piece can go there. It has a few generic rules that apply to all
+                    pieces, but it then switchs its logic to be specific to the piece type, e.g. Knight, Bishop, etc. 
+                </p>
+                <p> 
+                    Some pieces were relatively simple to implement. The Rook component checks if only one axis has changed, the Bishop
+                    component checks if the slope between the new position and previous position has an absolute value of 1, the Queen 
+                    combines both of these checks, the Knight can only move in a radius of 2.2 squares away from its starting position 
+                    (this was calculated using the pythagorean theorem). Pawns have their own set of rules, this includes when they can 
+                    move two squares, when they can take a piece, what direction they move when taking a piece and what direction they can
+                    move based on their colour.
+                </p>
+                <p>
+                    However, the most tedious piece to implement was the King. Ordinarily the King moves in a radius of 1.4 or 1.0 squares.
+                    There is only one excception to this, if the king wants to castle. Under these circumstances, the game must figure out 
+                    which Rook the King is castling with, whether that specific King and Rook pair have a clear path between them and neither
+                    piece should have moved yet. If any one of these checks fail, then the King will not castle. This required adding a new
+                    "moved" attribute to pieces to denote if they have moved yet. Addtionally, this had to be represented appropiately in
+                    the game save file, this was done by adding a 0 tick move on the Rook, impossibly fast for a human, so therefore it must've
+                    castled.
                 </p>
             </div>
         </div>
