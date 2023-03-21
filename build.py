@@ -1,11 +1,18 @@
-import PyInstaller.__main__
-import os
+try:
+    import PyInstaller.__main__
+except ImportError:
+    print("PyInstaller is not installed and is required to build")
+    print("To install, please run \"python -m pip -r requirements.txt\"")
+    exit()
 
 try:
     import pygame
 except ImportError:
     print("Pygame is not installed and is required to build")
     print("To install, please run \"python -m pip -r requirements.txt\"")
+    exit()
+
+import os
 
 name = ""
 if os.name == "nt":
