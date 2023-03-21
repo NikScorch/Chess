@@ -1,17 +1,6 @@
 # Python Chess Game
 ## Project For Computer Science Leaving Cert 2023
 
-## TODO
-* ✅ ~~Castling~~
-* Single player mode (chess bot)
-* Online play
-* Replay files of past games/game replayer
-* Dual board play
-* Save game to chosen file
-* Load game from chosen file
-* File asscociations for .CHESS files
-* Option promote pawn to a chosen piece
-
 ## Features
 * Offline Play
 * Full chess set
@@ -37,3 +26,14 @@
 4) Run `python -m pip install -r requirements.txt --user` to install the library and all its dependencies.
 5) Run `python build.py` to install to the current directory
 6) Run `.\chess.exe` on Windows or `./chess` on Unix systems
+
+## TODO
+* ✅ ~~Castling~~
+* Single player mode (chess bot)
+* Online play
+* Replay files of past games/game replayer
+* Dual board play
+* Save game to chosen file
+* Load game from chosen file
+* File asscociations for .CHESS files
+* Option promote pawn to a chosen piece
