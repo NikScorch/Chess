@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+import os
+
+print("="*os.get_terminal_size()[0] + "\n")
+print("Preparing to compile to executable")
+print("\n" + "="*os.get_terminal_size()[0] + "\n")
+
 try:
     import PyInstaller.__main__
 except ImportError:
@@ -13,7 +19,8 @@ except ImportError:
     print("To install, please run \"python -m pip install -r requirements.txt --user\"")
     exit()
 
-import os
+print("\n" + "="*os.get_terminal_size()[0] + "\n")
+print("Compilation logs\n")
 
 name = ""
 if os.name == "nt":
@@ -32,7 +39,7 @@ PyInstaller.__main__.run([
     "--log-level", "FATAL"
 ])
 
-print("\n" + "="*50)
+print("\n" + "="*os.get_terminal_size()[0] + "\n")
 print("Compiled as \"" + name + "\" in current working directory")
 print("The \"./build\" directory can be deleted safely")
 
@@ -40,6 +47,9 @@ print("The \"./build\" directory can be deleted safely")
 import sys
 if sys.argv.__len__() > 1:
     if sys.argv[-1] == "--zip":
+        print("\n" + "="*os.get_terminal_size()[0] + "\n")
+        print("Packaging to zip file")
+
         import zipfile 
         from shutil import rmtree
 
@@ -89,3 +99,6 @@ if sys.argv.__len__() > 1:
         
         os.chdir("../")
         rmtree(".mkzip")
+
+print("\n" + "="*os.get_terminal_size()[0] + "\n")
+input("Completed\n... ")
