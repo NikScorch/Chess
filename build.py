@@ -21,16 +21,16 @@ if os.name == "nt":
 elif os.name == "posix":
     name = "chess"
 
-# PyInstaller.__main__.run([
-#     'run.pyw',
-#     '--onefile',
-#     '--windowed',
-#     '-n' + name,
-#     '-i', 'icon.ico',
-#     "--distpath", ".",
-#     "--clean",
-#     "--log-level", "FATAL"
-# ])
+PyInstaller.__main__.run([
+    'run.pyw',
+    '--onefile',
+    '--windowed',
+    '-n' + name,
+    '-i', 'icon.ico',
+    "--distpath", ".",
+    "--clean",
+    "--log-level", "FATAL"
+])
 
 print("\n" + "="*50)
 print("Compiled as \"" + name + "\" in current working directory")
@@ -86,3 +86,6 @@ if sys.argv.__len__() > 1:
         os.chdir(".mkzip/")
         with zipfile.ZipFile('../2023-219-EV-154279.zip', 'w', zipfile.ZIP_DEFLATED) as zipf:
             zipdir('.', zipf)
+        
+        os.chdir("../")
+        rmtree(".mkzip")
