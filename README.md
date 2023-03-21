@@ -25,6 +25,15 @@
 
 1) Run ```git clone https://github.com/NikScorch/Chess.git```
 2) Install [Python 3.10](https://www.python.org/)
-2) (Optional) Set up a [python virtual environment](https://docs.python.org/3/tutorial/venv.html) so you don't run into issues with dependency conflicts. 
-3) run `python -m pip -r requirements.txt` to install the library and all its dependencies.
-4) run `python -m src` to run the program
+3) (Optional) Set up a [python virtual environment](https://docs.python.org/3/tutorial/venv.html) so you don't run into issues with dependency conflicts. 
+4) Run `python -m pip install -r requirements.txt --user` to install the library and all its dependencies.
+5) Run `python -m src` to run the program
+
+## Compilation
+
+1) Run ```git clone https://github.com/NikScorch/Chess.git```
+2) Install [Python 3.10](https://www.python.org/)
+3) (Optional) Set up a [python virtual environment](https://docs.python.org/3/tutorial/venv.html) so you don't run into issues with dependency conflicts. 
+4) Run `python -m pip install -r requirements.txt --user` to install the library and all its dependencies.
+5) Run `python build.py` to install to the current directory
+6) Run `.\chess.exe` on Windows or `./chess` on Unix systems

@@ -2,14 +2,14 @@ try:
     import PyInstaller.__main__
 except ImportError:
     print("PyInstaller is not installed and is required to build")
-    print("To install, please run \"python -m pip -r requirements.txt\"")
+    print("To install, please run \"python -m pip install -r requirements.txt --user\"")
     exit()
 
 try:
     import pygame
 except ImportError:
     print("Pygame is not installed and is required to build")
-    print("To install, please run \"python -m pip -r requirements.txt\"")
+    print("To install, please run \"python -m pip install -r requirements.txt --user\"")
     exit()
 
 import os
@@ -25,6 +25,7 @@ PyInstaller.__main__.run([
     '--onefile',
     '--windowed',
     '-n' + name,
+    '-i', 'icon.ico',
     "--distpath", ".",
     "--clean",
     "--log-level", "FATAL"

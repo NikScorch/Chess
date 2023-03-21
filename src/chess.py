@@ -495,6 +495,7 @@ def main():
     size = width, height = 800, 800
     screen = pygame.display.set_mode(size)
     pygame.display.set_caption("Chess")
+    pygame.display.set_icon(pygame.image.load("icon.ico"))
     clock = pygame.time.Clock()
 
     board = Board(screen)
