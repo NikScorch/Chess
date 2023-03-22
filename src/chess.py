@@ -202,11 +202,10 @@ class ChessPiece(pygame.sprite.Sprite):
                             return True
                 return False
             case "r":
-                if self.piece == "r":   # rook
-                    if self.xy[0] == new_pos[0] or self.xy[1] == new_pos[1]:
-                        return True
-                    else:
-                        return False
+                if self.xy[0] == new_pos[0] or self.xy[1] == new_pos[1]:
+                    return True
+                else:
+                    return False
             case "b":
                 if self.xy[0] == new_pos[0] or self.xy[1] == new_pos[1]:
                     return False
