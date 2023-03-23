@@ -42,6 +42,11 @@ from random import randint
 from math import dist
 from time import time
 import json
+import os
+
+# set correct working directory
+# crucial for compilation
+os.chdir(os.path.dirname(os.path.abspath(__file__ + "/../")))
 
 # These functions convert array coords into Square Names
 # e.g. (0,0) --> "a8"

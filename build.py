@@ -34,6 +34,8 @@ PyInstaller.__main__.run([
     '--windowed',
     '-n' + name,
     '-i', 'icon.ico',
+    '--add-data', 'icon.ico;.',
+    '--add-data', 'src/pieces/cardinal_png;src/pieces/cardinal_png',
     "--distpath", ".",
     "--clean",
     "--log-level", "FATAL"
