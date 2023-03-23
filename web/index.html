@@ -58,6 +58,7 @@
                         functionality to move pieces by an external program is there but it is not intelligent
 -->
     <head>
+        <link rel="icon" type="image/x-icon" href="icons/icon.ico">
         <link rel="stylesheet" href="styles.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans">
         <meta charset="UTF-8">
@@ -175,7 +176,7 @@
                     the game. It can also move a piece for a player automatically.
                 </p>
                 <p>
-                    By splitting the code into these two sections, we can process a variety of pieces on the 
+                    By splitting the code into these two sections, I can process a variety of pieces on the 
                     board with relative ease.
                 </p>
                 <hr>
@@ -207,10 +208,11 @@
                     them to do so.
                 </p>
                 <p>
-                    We can analyse these save files to extract data such as the most (max) and least (min) commonly visited 
-                    squares and the average (mean) time taken per move. We can use this to create a heat map of the most frequently
+                    I can analyse these save files to extract data such as the most (max) and least (min) commonly visited 
+                    squares and the average (mean) time taken per move. I can use this to create a heat map of the most frequently
                     visited squares on the board.
                 </p>
+                <img src="images/avg.png" alt="Frequency Heat Map" style="width: 80%; margin: 0 auto; display: block;">
             </div>
         </div>
 
@@ -304,7 +306,7 @@
                     and more. For my version of chess I will foregore checkmate and base my version of the game on ancient 
                     chess. This is because of the complexity of the algorithm. Considering the time allowed and how much 
                     work is need to get the rest of the game functioning, it would be too tedious to implement this function 
-                    properly and test it to ensure it has no issues.  For that reason, we will allow the king to be taken 
+                    properly and test it to ensure it has no issues.  For that reason, I will allow the king to be taken 
                     like a normal piece in ancient chess, check does not have to be called.
                 </p> -->
             </div>
@@ -339,8 +341,8 @@
                 </p>
                 <img src="diagrams/sysarch.svg" alt="System Architecture Diagram" style="width: 100%;">
                 <p>
-                    Now onto the main game logic. We will need an event loop to process user data and update the board regularly.
-                    We will have a chess piece class with coordinate, colour and shape attributes. Then we will have a board class with two 
+                    Now onto the main game logic. I will need an event loop to process user data and update the board regularly.
+                    I will have a chess piece class with coordinate, colour and shape attributes. Then I will have a board class with two 
                     chesspiece arrays and attributes for whose turn it is, who has won and how many moves have been taken and logs for every move. 
                     The position of each piece on the board is held inside each individual chess piece object. Each object knows where itself is, but not
                     any of the other pieces. It has to call on its parent board to retrieve a list of all the other pieces. 
@@ -348,7 +350,7 @@
                 <p>
                     User input will be processed in the main function and both keyboard and mouse input will be processed immediately so the effects
                     are shown on the screen at the end of the game tick (loop iteration). This must handle picking up pieces with the mouse, switching 
-                    game modes and saving/loading game files. Then call the "update" method on every chess piece and we render the board thereafter. 
+                    game modes and saving/loading game files. Then call the "update" method on every chess piece and I render the board thereafter. 
                     The "update" function will check if the piece has been picked up, if its new position is valid and if it should capture another 
                     piece. The board class will have a "draw" function to easily render the checkerboard.
                 </p>
@@ -401,7 +403,7 @@
                 </p>
                 <p>
                     I knew that I wanted to design in an OOP style. In the main program, there are no global variables. Everything must
-                    be passed from one function or another. With this in mind, we structure our code so that a board object contains
+                    be passed from one function or another. With this in mind, I structure our code so that a board object contains
                     many chess piece objects. Every chess piece takes the parent board as a parameter, this way each chess piece
                     has access to the data of every other chess piece. The same is done for the GUI window, the board class takes
                     the screen as parameter "ctx". With this system, every object has access to every other object in a consistent
@@ -705,6 +707,56 @@
                 <p>
                     www.pygame.org. (n.d.). Pygame Front Page — pygame v2.0.0.dev15 documentation. [online] Available at: https://www.pygame.org/docs/.
                 </p>
+            </div>
+        </div>
+
+        <!-- Summary Word Count -->
+        <div>
+            <div class="container">
+                <hr>
+                <h2>Summary Word Count</h2>
+                <h3>
+                    You must include a summary of the word count of your report. This could be presented in the
+                    form of a table, as shown below, and should show the word count for each section as well as the
+                    overall word count. 
+                </h3>
+                <table style="width: 50%; margin: 0 auto; margin-top: 30px;">
+                    <tr style="font-weight: bold;">
+                        <td>Section</td>
+                        <td>Word Count</td>
+                    </tr>
+                    <tr style="text-align: right;">
+                        <td>1. Meeting the Brief</td>
+                        <td>496</td>
+                    </tr>
+                    <tr style="text-align: right;">
+                        <td>2. Investigation and Plan</td>
+                        <td>398</td>
+                    </tr>
+                    <tr style="text-align: right;">
+                        <td>3. Design</td>
+                        <td>377</td>
+                    </tr>
+                    <tr style="text-align: right;">
+                        <td>4. Implementation</td>
+                        <td>513</td>
+                    </tr>
+                    <tr style="text-align: right;">
+                        <td>5. Testing</td>
+                        <td>362</td>
+                        <!--420/362-->
+                    </tr>
+                    <tr style="text-align: right;">
+                        <td>6. Evaluation</td>
+                        <td>257</td>
+                    </tr>
+                    <tr style="text-align: right;">
+                        <td>Total</td>
+                        <td>2403</td>
+                        <!--2041
+                        2403/2461-->
+                    </tr>
+                </table>
             </div>
         </div>
     </body>
