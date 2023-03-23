@@ -25,8 +25,10 @@ print("Compilation logs\n")
 name = ""
 if os.name == "nt":
     name = "chess.exe"
+    sep = ";"
 elif os.name == "posix":
     name = "chess"
+    sep = ":"
 
 PyInstaller.__main__.run([
     'run.pyw',
@@ -34,8 +36,8 @@ PyInstaller.__main__.run([
     '--windowed',
     '-n' + name,
     '-i', 'icon.ico',
-    '--add-data', 'icon.ico;.',
-    '--add-data', 'src/pieces/cardinal_png;src/pieces/cardinal_png',
+    '--add-data', 'icon.ico'+sep+'.',
+    '--add-data', 'src/pieces/cardinal_png'+sep+'src/pieces/cardinal_png',
     "--distpath", ".",
     "--clean",
     "--log-level", "FATAL"
