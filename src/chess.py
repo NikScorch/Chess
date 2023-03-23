@@ -44,10 +44,6 @@ from time import time
 import json
 import os
 
-# set correct working directory
-# crucial for compilation
-os.chdir(os.path.dirname(os.path.abspath(__file__ + "/../")))
-
 # These functions convert array coords into Square Names
 # e.g. (0,0) --> "a8"
 #      "b4"  --> (1,4)
@@ -284,8 +280,9 @@ class ChessPiece(pygame.sprite.Sprite):
     
 
 class Board():
-    def __init__(self, ctx):
+    def __init__(self, ctx, path):
         self.screen = ctx
+        self.path = path
 
         self.game_start = time()
         self.time = time()
@@ -425,11 +422,11 @@ class Board():
         
         data = [board, dead, turn, self.move_set]
 
-        with open('game.chess', 'w') as filehandle:
+        with open(os.path.abspath(self.path + '/game.chess'), 'w') as filehandle:
             json.dump(data, filehandle, indent=2)
         
     def load_game(self):
-        with open('game.chess', 'r') as filehandle:
+        with open(os.path.abspath(self.path + '/game.chess'), 'r') as filehandle:
             data = json.load(filehandle)
 
         self.white = []
@@ -494,6 +491,11 @@ class Board():
                 break
 
 def main():
+    # set correct working directory
+    # crucial for compilation
+    path = os.getcwd()
+    os.chdir(os.path.dirname(os.path.abspath(__file__ + "/../")))
+
     pygame.init()
 
     size = width, height = 800, 800
@@ -502,7 +504,7 @@ def main():
     pygame.display.set_icon(pygame.image.load("icon.ico"))
     clock = pygame.time.Clock()
 
-    board = Board(screen)
+    board = Board(screen, path)
     board.default_game()
 
     ai_game = False
